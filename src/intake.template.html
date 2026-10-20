@@ -1,0 +1,352 @@
+<title>Prime Claims Intake Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/*STYLE*/
+/* Intake additions: the case file shows the email beside what was read from it. */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px }
+.email { white-space: pre-wrap; font-size: 13.5px; background: var(--bg); border-radius: 8px; padding: 14px 16px; margin: 0; font-family: var(--body); overflow-wrap: anywhere }
+.fields { display: grid; gap: 8px }
+.field { display: grid; grid-template-columns: 112px minmax(0, 1fr) 44px; gap: 8px; align-items: center }
+.field label { font-size: 12.5px; color: var(--muted) }
+.field input, .field select { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; width: 100%; min-width: 0 }
+.field input.changed, .field select.changed { border-color: var(--accent); background: var(--accent-soft) }
+.cf { font-size: 11.5px; text-align: center; border-radius: 4px; padding: 2px 0 }
+.checks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none }
+.checks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 13.5px }
+.ok::before { content: "✓"; color: var(--good); font-weight: 600 }
+.no::before { content: "✕"; color: var(--high); font-weight: 600 }
+.na::before { content: "–"; color: var(--muted) }
+.verdict { padding: 14px 16px; border-radius: 8px; display: grid; gap: 6px }
+.v-stp { background: var(--good-soft) }
+.v-route { background: var(--mid-soft) }
+.v-siu { background: var(--high-soft) }
+.src { font-size: 12px; color: var(--muted) }
+.draft { white-space: pre-wrap; font-size: 13px; background: var(--bg); border: 1px dashed var(--line); border-radius: 6px; padding: 10px 12px; margin: 0; font-family: var(--body) }
+@media (max-width: 1060px) { .split { grid-template-columns: minmax(0, 1fr) } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Claims Intake Desk <small>Prime Insurance · claims intake and triage, phase 2 prototype</small></h1>
+    <span class="badge">Synthetic claim emails, not real data</span>
+  </header>
+
+  <section class="strip" aria-label="Summary">
+    <div><b class="num" id="s-msgs">–</b><span>first notices of loss in the inbox</span></div>
+    <div><b class="num" id="s-stp">–</b><span id="s-stp-l">could settle straight through</span></div>
+    <div><b class="num" id="s-gate">–</b><span id="s-gate-l">stopped only by the fraud score</span></div>
+    <div><b class="num" id="s-done">–</b><span id="s-done-l">handled on this desk</span></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-q" aria-selected="true" aria-controls="view-q">Inbox</button>
+    <button role="tab" id="tab-bt" aria-selected="false" aria-controls="view-bt">Extraction accuracy</button>
+  </nav>
+
+  <section id="view-q" role="tabpanel" aria-labelledby="tab-q" class="desk">
+    <div class="queue">
+      <div class="qhead">
+        <input type="search" id="q" placeholder="Search sender, subject, claim" aria-label="Search inbox">
+        <div class="filters" role="group" aria-label="Filter inbox">
+          <button class="chip" data-f="open" aria-pressed="true">New</button>
+          <button class="chip" data-f="done" aria-pressed="false">Handled</button>
+          <button class="chip" data-f="all" aria-pressed="false">All</button>
+        </div>
+      </div>
+      <div class="list" id="list" role="list"></div>
+    </div>
+    <article class="case" id="case" aria-live="polite"></article>
+  </section>
+
+  <section id="view-bt" role="tabpanel" aria-labelledby="tab-bt" class="bt" hidden>
+    <div class="cards">
+      <div class="card">
+        <h3>Fields read correctly</h3>
+        <div class="vs">
+          <div><b class="num" id="acc-rules">–</b><span class="muted">rules only, all 40 emails</span></div>
+          <div><b class="num" id="acc-claude">–</b><span class="muted" id="acc-claude-l">Claude, on emails read so far</span></div>
+        </div>
+        <p class="note">PRD target CL acceptance: 95% of key fields. Read a few emails with Claude on the Inbox tab to fill in the second number.</p>
+      </div>
+      <div class="card">
+        <h3>Accuracy by field</h3>
+        <div class="tablewrap"><table class="age links"><thead><tr><th>Field</th><th style="text-align:right">Rules</th><th style="text-align:right">Claude</th></tr></thead><tbody id="acc-fields"></tbody></table></div>
+      </div>
+      <div class="card">
+        <h3>Why the fraud gate matters</h3>
+        <p id="gate-text" style="margin:0"></p>
+        <p class="note">Straight-through settlement is allowed only when the phase 1 fraud score is under 30 (CL-08).</p>
+      </div>
+    </div>
+    <p class="note">Every email here was generated from a synthetic claim, so each field has a known right answer. Real emails are messier; accuracy must be measured on a sample of Prime's own claims before any straight-through settlement is switched on.</p>
+  </section>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const MSGS = DATA.messages, STP = DATA.stp;
+const BY_ID = new Map(MSGS.map(m => [m.msg_id, m]));
+const POLICIES = new Map(MSGS.map(m => [m.policy.policy_id, m.policy]));
+const PERILS = Object.keys(DATA.required_docs);
+const FIELDS = [
+  ["policy_number", "Policy"], ["claimant_name", "Claimant"], ["loss_date", "Loss date"], ["peril", "Peril"],
+  ["location", "Location"], ["amount_claimed", "Amount"], ["police_report", "Police report"], ["documents", "Documents"],
+];
+let records = {};     // msg_id -> saved record from the shared store
+let claudeRead = {};  // msg_id -> extraction from Claude (this view, or saved)
+let edits = {};       // msg_id -> {field: value} unsaved handler corrections
+let db = null, sample = null, myId = null, busy = false;
+let filter = "open", query = "", selected = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const money = n => n == null || isNaN(n) ? "–" : Number(n).toLocaleString("en-US", { maximumFractionDigits: 2 });
+
+// The extraction in use: saved record, else Claude, else rules
+function extraction(m) {
+  if (records[m.msg_id]?.fields) return { fields: records[m.msg_id].fields, source: records[m.msg_id].source || "saved" };
+  if (claudeRead[m.msg_id]) return { fields: claudeRead[m.msg_id], source: "Claude" };
+  return { fields: m.rules_extraction, source: "rules" };
+}
+const val = (m, k) => (edits[m.msg_id] && k in edits[m.msg_id]) ? edits[m.msg_id][k] : extraction(m).fields[k]?.value;
+const conf = (m, k) => (edits[m.msg_id] && k in edits[m.msg_id]) ? 1 : (extraction(m).fields[k]?.confidence ?? 0);
+
+function assess(m, opts = {}) {
+  const v = k => val(m, k);
+  const pid = v("policy_number");
+  let pol = pid ? POLICIES.get(pid) : null, polNote = pol ? `Policy ${pid} found` : pid ? `No policy ${pid} on file` : "No policy number given";
+  if (!pol && v("claimant_name")) {
+    const byName = [...POLICIES.values()].find(p => p.holder.toLowerCase() === String(v("claimant_name")).toLowerCase());
+    if (byName) { pol = byName; polNote = `Policy ${byName.policy_id} found by the claimant's name; confirm with the customer`; }
+  }
+  const loss = v("loss_date"), peril = v("peril"), amt = v("amount_claimed") == null || v("amount_claimed") === "" ? null : Number(v("amount_claimed"));
+  const active = pol && loss ? loss >= pol.inception && loss <= pol.expiry : null;
+  const covered = pol && peril ? pol.perils.includes(peril) : null;
+  const withinLimit = pol && amt != null ? amt <= pol.limit : null;
+  const docs = new Set(v("documents") || []);
+  if (v("police_report")) docs.add("police report");
+  const missing = peril ? DATA.required_docs[peril].filter(d => !docs.has(d)) : [];
+  // Key fields for paying a claim must be read with high confidence (CL-08)
+  const KEY = ["policy_number", "loss_date", "peril", "amount_claimed"];
+  const lowConf = FIELDS.filter(([k]) => KEY.includes(k) && conf(m, k) < STP.min_confidence).map(([, l]) => l);
+  const score = m.fraud_score;
+  const checks = [
+    { ok: !!pol, text: polNote },
+    { ok: active, text: active == null ? "Can't check cover dates without a policy and loss date" : active ? `Cover active on ${loss} (${pol.inception} to ${pol.expiry})` : `Loss on ${loss} falls outside cover (${pol.inception} to ${pol.expiry})` },
+    { ok: covered, text: covered == null ? "Can't check the peril without a policy and peril" : covered ? `${peril} is covered by ${pol.product}` : `${peril} is not covered by ${pol.product}` },
+    { ok: amt != null && withinLimit, text: amt == null ? "No amount yet" : withinLimit ? `${money(amt)} is within the ${money(pol?.limit)} limit; excess ${money(pol?.excess)}` : `Amount ${money(amt)} could not be checked against a limit` },
+    { ok: missing.length === 0, text: missing.length ? `Missing: ${missing.join(", ")}` : "All required documents mentioned" },
+    { ok: lowConf.length === 0, text: lowConf.length ? `Low confidence on ${lowConf.join(", ")}; check against the email` : "Policy, loss date, peril and amount all read with high confidence" },
+    { ok: amt != null && amt <= STP.max_amount, text: amt == null ? "Amount unknown" : amt <= STP.max_amount ? `Under the ${money(STP.max_amount)} straight-through cap` : `Over the ${money(STP.max_amount)} straight-through cap` },
+    { ok: score < STP.max_fraud_score, text: `Fraud score ${score}` + (score < STP.max_fraud_score ? " (under 30)" : score >= 49 ? " (referred to SIU)" : " (needs a handler's eye)"), fraud: true },
+  ];
+  const allButFraud = checks.filter(c => !c.fraud).every(c => c.ok === true);
+  const stp = allButFraud && checks.at(-1).ok;
+  const coverIssue = active === false || covered === false;
+  const complex = coverIssue || ["Fire", "Third-party injury"].includes(peril) || (amt ?? 0) > 10000;
+  const team = score >= 49 ? "Special investigations, with a claims handler" : stp ? "Straight-through settlement" :
+    complex ? "Major loss and injury team" : m.line === "Motor" ? "Motor claims team" : "Property claims team";
+  const r = DATA.reserve[`${m.line}|${peril}`];
+  const reserve = r ? { low: r.p25, high: r.p75, point: amt ?? r.median } : null;
+  return { pol, amt, checks, missing, stp, allButFraud, coverIssue, complexity: stp ? "Simple" : complex ? "Complex" : "Standard", team, reserve, score };
+}
+
+function summary() {
+  const a = MSGS.map(m => assess(m));
+  $("s-msgs").textContent = MSGS.length;
+  $("s-stp").textContent = a.filter(x => x.stp).length;
+  $("s-stp-l").textContent = `could settle straight through with the current reading`;
+  $("s-gate").textContent = a.filter(x => x.allButFraud && !x.stp).length;
+  $("s-gate-l").textContent = `would have paid out automatically without the phase 1 fraud score`;
+  const done = Object.values(records).filter(r => r.decision).length;
+  $("s-done").textContent = done;
+  $("s-done-l").textContent = done === 1 ? "email handled on this desk" : "emails handled on this desk";
+}
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  return MSGS.filter(m => {
+    const done = !!records[m.msg_id]?.decision;
+    if (filter === "open" && done) return false;
+    if (filter === "done" && !done) return false;
+    return !q || [m.from, m.subject, m.msg_id, m.claim_id].some(s => s.toLowerCase().includes(q));
+  });
+}
+
+function renderList() {
+  const rows = visible();
+  if (!rows.length) { $("list").innerHTML = `<p class="note" style="padding:16px">${filter === "open" ? "Inbox is clear." : "No emails match."}</p>`; return; }
+  $("list").innerHTML = rows.map(m => {
+    const a = assess(m), rec = records[m.msg_id];
+    const tag = rec?.decision ? `<span class="state st-notfraud">${rec.decision === "stp" ? "Settled" : "Routed"}</span>` :
+      a.stp ? `<span class="state st-notfraud">Can settle</span>` : a.score >= 49 ? `<span class="state st-confirmed">SIU</span>` : `<span class="state st-open">To route</span>`;
+    return `<button class="row" role="listitem" data-id="${m.msg_id}" aria-current="${m.msg_id === selected}">
+      <div class="score s-${a.score >= 49 ? "high" : a.score >= 30 ? "mid" : "low"} num" title="Fraud score">${a.score}</div>
+      <div class="who"><div>${esc(m.subject)}</div><div class="muted" style="font-size:12.5px">${esc(m.from)} · ${m.received}</div></div>
+      ${tag}</button>`;
+  }).join("");
+}
+
+function fieldInput(m, k) {
+  const v = val(m, k), changed = edits[m.msg_id] && k in edits[m.msg_id];
+  const cls = changed ? "changed" : "";
+  if (k === "peril") return `<select id="f-${k}" class="${cls}"><option value="">Not found</option>${PERILS.map(p => `<option ${p === v ? "selected" : ""}>${p}</option>`).join("")}</select>`;
+  if (k === "police_report") return `<select id="f-${k}" class="${cls}"><option value="false" ${!v ? "selected" : ""}>No</option><option value="true" ${v ? "selected" : ""}>Yes</option></select>`;
+  if (k === "documents") return `<input id="f-${k}" class="${cls}" value="${esc((v || []).join(", "))}">`;
+  if (k === "loss_date") return `<input id="f-${k}" type="date" class="${cls}" value="${esc(v || "")}">`;
+  if (k === "amount_claimed") return `<input id="f-${k}" inputmode="decimal" class="${cls}" value="${v ?? ""}">`;
+  return `<input id="f-${k}" class="${cls}" value="${esc(v || "")}">`;
+}
+function readInput(k, raw) {
+  if (k === "police_report") return raw === "true";
+  if (k === "documents") return raw.split(",").map(s => s.trim()).filter(Boolean).sort();
+  if (k === "amount_claimed") return raw === "" ? null : Number(raw.replace(/[^\d.]/g, ""));
+  return raw === "" ? null : raw;
+}
+
+function renderCase() {
+  const el = $("case"), m = BY_ID.get(selected);
+  if (!m) { el.innerHTML = `<p class="muted">Pick an email from the inbox.</p>`; return; }
+  const a = assess(m), ex = extraction(m), rec = records[m.msg_id];
+  const vclass = a.stp ? "v-stp" : a.score >= 49 ? "v-siu" : "v-route";
+  const payable = a.amt != null && a.pol ? Math.max(0, a.amt - a.pol.excess) : null;
+  const draft = a.missing.length ? `Dear ${String(val(m, "claimant_name") || "customer").split(" ")[0]},\n\nThank you for reporting your claim. To move it forward we need:\n${a.missing.map(d => "- " + d).join("\n")}\n\nPlease reply to this email with these attached.\n\nPrime Insurance Claims` : "";
+  el.innerHTML = `
+    <div class="casehead">
+      <div style="display:grid;gap:4px;min-width:0"><h2>${esc(m.subject)}</h2>
+        <span class="muted"><span class="mono">${m.msg_id}</span> · ${esc(m.from)} · received ${m.received}</span></div>
+      <div class="bigscore"><b class="num" style="color:var(--${a.score >= 49 ? "high" : a.score >= 30 ? "mid" : "low"})">${a.score}</b><span class="note">fraud score from phase 1</span></div>
+    </div>
+    <div class="split">
+      <section style="display:grid;gap:8px;align-content:start"><h3>The email</h3><pre class="email">${esc(m.text)}</pre></section>
+      <section style="display:grid;gap:10px;align-content:start">
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap">
+          <h3>What was read <span class="src">· ${ex.source === "Claude" ? "read by Claude" : ex.source === "rules" ? "read by rules" : "saved"}</span></h3>
+          <button class="btn" id="read-claude" ${busy || !sample ? "disabled" : ""}>${busy ? "Reading…" : claudeRead[m.msg_id] ? "Read again with Claude" : "Read with Claude"}</button>
+        </div>
+        <div class="fields">${FIELDS.map(([k, l]) => { const c = conf(m, k); return `<div class="field"><label for="f-${k}">${l}</label>${fieldInput(m, k)}<span class="cf num ${c >= 0.85 ? "s-low" : c >= 0.6 ? "s-mid" : "s-high"}" title="Confidence">${Math.round(c * 100)}</span></div>`; }).join("")}</div>
+        <p class="note" id="read-msg">${sample ? "Correct any field; corrections are saved as training labels (CL-11)." : "Reading with Claude isn't available in this view, so the rules reading is shown. Corrections still work."}</p>
+      </section>
+    </div>
+    <section style="display:grid;gap:10px"><h3>Checks</h3>
+      <ul class="checks">${a.checks.map(c => `<li><span class="${c.ok === true ? "ok" : c.ok === false ? "no" : "na"}"></span><span>${esc(c.text)}</span></li>`).join("")}</ul></section>
+    <section class="verdict ${vclass}">
+      <b>${a.stp ? `Settle straight through: pay ${money(payable)} (${money(a.amt)} less ${money(a.pol.excess)} excess)` : `Route to: ${esc(a.team)}`}</b>
+      <span style="font-size:13.5px">Complexity ${a.complexity}${a.reserve ? ` · suggested reserve ${money(a.reserve.point)} (peer range ${money(a.reserve.low)} to ${money(a.reserve.high)})` : ""}${a.coverIssue ? " · possible cover issue for a handler to review. The system never declines a claim." : ""}</span>
+      ${a.score >= 30 ? `<span class="note">Fraud reasons: ${m.fraud_reasons.map(esc).join("; ")}</span>` : ""}
+    </section>
+    ${draft ? `<section style="display:grid;gap:8px"><h3>Request for missing documents, for the handler to approve</h3><pre class="draft" id="draft">${esc(draft)}</pre><div><button class="btn" id="copy">Copy text</button></div></section>` : ""}
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button class="btn primary" id="decide">${a.stp ? "Approve settlement" : "Send to " + esc(a.team.split(",")[0].toLowerCase())}</button>
+      <span class="note" id="save-msg">${rec?.decision ? `Saved ${new Date(rec.at).toLocaleString()}${rec.by === myId ? " by you" : ""}` : db ? "Not handled yet." : "Decisions can't be saved in this view; they last until you reload."}</span>
+    </div>
+    <p class="note">Test data only: ${m.planted_fraud ? "this email comes from a claim planted as fraud in phase 1." : "this email comes from a genuine synthetic claim."}</p>`;
+
+  FIELDS.forEach(([k]) => { const inp = $("f-" + k); inp.onchange = () => { (edits[m.msg_id] ||= {})[k] = readInput(k, inp.value); summary(); renderList(); renderCase(); }; });
+  const rc = $("read-claude"); if (rc) rc.onclick = () => readWithClaude(m);
+  const cp = $("copy"); if (cp) cp.onclick = () => navigator.clipboard.writeText(draft).then(() => cp.textContent = "Copied", () => { const r = document.createRange(); r.selectNodeContents($("draft")); getSelection().removeAllRanges(); getSelection().addRange(r); cp.textContent = "Selected; press copy"; });
+  $("decide").onclick = () => decide(m, a);
+}
+
+async function readWithClaude(m) {
+  if (!sample || busy) return;
+  busy = true; renderCase();
+  const prompt = `You read first-notice-of-loss emails for an insurer. Extract the fields below from the email and return ONLY a JSON object.
+Each field is {"value": ..., "confidence": number from 0 to 1}. Use null when the email does not say. Do not guess a value the email does not support; lower the confidence when you infer.
+Fields:
+- policy_number: format P followed by 6 digits (pad a shorter number with zeros, e.g. "policy number 211" -> "P000211")
+- claimant_name: the sender's full name
+- loss_date: ISO date YYYY-MM-DD. The email was received on ${m.received}; resolve relative dates like "last Wednesday" against that date
+- peril: exactly one of ${PERILS.join(", ")}
+- location: street and town as written
+- amount_claimed: a number, no currency symbol; null if no amount is given
+- police_report: true if the email says it was reported to the police
+- documents: array of attached documents, lowercased, using these names where they fit: ${[...new Set(Object.values(DATA.required_docs).flat())].join(", ")}
+
+Email:
+"""
+${m.text}
+"""`;
+  try {
+    const out = await sample.json(prompt, { modelTier: "quick" });
+    const fields = {};
+    FIELDS.forEach(([k]) => { const f = out?.[k]; fields[k] = { value: f && typeof f === "object" && "value" in f ? f.value : null, confidence: Math.max(0, Math.min(1, Number(f?.confidence) || 0)) }; });
+    if (fields.documents.value && !Array.isArray(fields.documents.value)) fields.documents.value = [String(fields.documents.value)];
+    if (Array.isArray(fields.documents.value)) fields.documents.value = fields.documents.value.map(s => String(s).toLowerCase()).sort();
+    if (fields.amount_claimed.value != null) fields.amount_claimed.value = Number(fields.amount_claimed.value);
+    claudeRead[m.msg_id] = fields;
+    delete edits[m.msg_id];
+    busy = false; summary(); renderList(); renderCase(); accuracy();
+  } catch (e) {
+    busy = false; renderCase();
+    $("read-msg").textContent = e?.code === "rate_limited" ? "Claude is busy; try again in a minute." : e?.code === "not_granted" ? "Reading with Claude was not allowed for this page." : "Claude couldn't read this email. The rules reading is shown.";
+  }
+}
+
+async function decide(m, a) {
+  const msg = $("save-msg");
+  const ex = extraction(m);
+  const fields = {};
+  FIELDS.forEach(([k]) => fields[k] = { value: val(m, k), confidence: conf(m, k) });
+  const corrections = Object.entries(edits[m.msg_id] || {}).map(([k, to]) => ({ field: k, from: ex.fields[k]?.value ?? null, to }));
+  const rec = { decision: a.stp ? "stp" : "routed", team: a.team, fields, source: ex.source === "saved" ? (records[m.msg_id]?.source || "saved") : ex.source,
+    corrections: [...(records[m.msg_id]?.corrections || []), ...corrections], claude: claudeRead[m.msg_id] || records[m.msg_id]?.claude || null, fraud_score: a.score, at: new Date().toISOString(), by: myId || null };
+  if (!db) { records[m.msg_id] = rec; delete edits[m.msg_id]; refresh(); return; }
+  $("decide").disabled = true; msg.textContent = "Saving…";
+  try { await db.collection("intake").doc(m.msg_id).set(rec); records[m.msg_id] = rec; delete edits[m.msg_id]; refresh(); }
+  catch (e) { msg.textContent = e?.code === "permission_denied" || e?.code === "not_granted" ? "You can view this desk but not record decisions. Ask the owner for edit access." : "Couldn't save. Check your connection and try again."; $("decide").disabled = false; }
+}
+
+function same(k, got, want) {
+  if (k === "amount_claimed") return want == null ? got == null : got != null && Math.abs(Number(got) - want) < 1;
+  if (k === "documents") return JSON.stringify([...(got || [])].sort()) === JSON.stringify([...(want || [])].sort());
+  if (k === "claimant_name" || k === "location") return String(got || "").trim().toLowerCase() === String(want || "").toLowerCase();
+  return got === want;
+}
+function accuracy() {
+  const tally = src => {
+    const per = {}; let ok = 0, n = 0;
+    MSGS.forEach(m => { const f = src(m); if (!f) return; FIELDS.forEach(([k]) => { const r = same(k, f[k]?.value, m.truth[k]); (per[k] ||= [0, 0]); per[k][0] += r; per[k][1]++; ok += r; n++; }); });
+    return { ok, n, per };
+  };
+  const rules = tally(m => m.rules_extraction);
+  const claude = tally(m => claudeRead[m.msg_id] || records[m.msg_id]?.claude || null);
+  $("acc-rules").textContent = Math.round(rules.ok / rules.n * 100) + "%";
+  $("acc-claude").textContent = claude.n ? Math.round(claude.ok / claude.n * 100) + "%" : "–";
+  $("acc-claude-l").textContent = claude.n ? `Claude, on the ${claude.n / FIELDS.length} email${claude.n / FIELDS.length === 1 ? "" : "s"} read so far` : "Claude: no emails read yet";
+  $("acc-fields").innerHTML = FIELDS.map(([k, l]) => `<tr><td>${l}</td><td class="num" style="text-align:right">${rules.per[k][0]} of ${rules.per[k][1]}</td><td class="num" style="text-align:right">${claude.per[k] ? `${claude.per[k][0]} of ${claude.per[k][1]}` : "–"}</td></tr>`).join("");
+  const gated = MSGS.filter(m => { const a = assess(m); return a.allButFraud && !a.stp; });
+  $("gate-text").textContent = gated.length
+    ? `${gated.length} email${gated.length === 1 ? "" : "s"} pass every other check and would have been paid automatically, worth ${money(gated.reduce((s, m) => s + (assess(m).amt || 0), 0))}. ${gated.filter(m => m.planted_fraud).length} of them come from claims planted as fraud.`
+    : "With the current readings, no email passes every other check while failing only on fraud score.";
+}
+
+function refresh() { summary(); renderList(); renderCase(); accuracy(); }
+function open(id) { selected = id; renderList(); renderCase(); if (window.matchMedia("(max-width: 860px)").matches) $("case").scrollIntoView({ block: "start" }); }
+
+document.querySelectorAll(".chip[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; document.querySelectorAll(".chip[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); renderList(); });
+$("q").oninput = e => { query = e.target.value; renderList(); };
+$("list").onclick = e => { const r = e.target.closest(".row"); if (r) open(r.dataset.id); };
+document.querySelectorAll("[role=tab]").forEach(t => t.onclick = () => {
+  document.querySelectorAll("[role=tab]").forEach(x => x.setAttribute("aria-selected", x === t));
+  $("view-q").hidden = t.id !== "tab-q"; $("view-bt").hidden = t.id !== "tab-bt";
+});
+
+selected = (MSGS.find(m => assess(m).allButFraud && !assess(m).stp) || MSGS[0]).msg_id;
+refresh();
+
+(async () => {
+  try { const user = await window.claude?.use?.("user"); if (user) myId = await user.id().catch(() => null); } catch (e) {}
+  try { sample = await window.claude?.use?.("sample"); } catch (e) { sample = null; }
+  try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
+  renderCase();
+  if (!db) return;
+  db.collection("intake").onSnapshot(snap => {
+    const next = {};
+    snap.docs.forEach(d => { const v = d.data(); if (v && v.fields) next[d.id] = v; });
+    records = next; refresh();
+  }, () => {});
+})();
+</script>

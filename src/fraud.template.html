@@ -1,0 +1,429 @@
+<title>Prime SIU Referral Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an investigator's desk. Summary strip on top, referral queue on the left, the open case file on the right. */
+:root {
+  --bg: #f3f4f1; --panel: #ffffff; --ink: #1d2422; --muted: #5d6763; --line: #d9ddd8; --soft: #e9ece7;
+  --accent: #1f5f5b; --accent-soft: #dcebe8;
+  --high: #a3342b; --high-soft: #f6e1de; --mid: #9a6412; --mid-soft: #f5ead3; --low: #5d6763; --low-soft: #e9ece7;
+  --good: #2f6b3a; --good-soft: #e0eedf;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121615; --panel: #1a201e; --ink: #e5e9e6; --muted: #98a39e; --line: #2d3532; --soft: #232a28;
+  --accent: #6cbab2; --accent-soft: #1f3a37;
+  --high: #ec8b80; --high-soft: #3d2220; --mid: #e0b061; --mid-soft: #3a2f1b; --low: #98a39e; --low-soft: #262d2b;
+  --good: #86c48f; --good-soft: #1f3523; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121615; --panel: #1a201e; --ink: #e5e9e6; --muted: #98a39e; --line: #2d3532; --soft: #232a28;
+  --accent: #6cbab2; --accent-soft: #1f3a37;
+  --high: #ec8b80; --high-soft: #3d2220; --mid: #e0b061; --mid-soft: #3a2f1b; --low: #98a39e; --low-soft: #262d2b;
+  --good: #86c48f; --good-soft: #1f3523; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.45 }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 20px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 16px }
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px }
+h1 { font-family: var(--display); font-weight: 600; font-size: 26px; margin: 0; letter-spacing: -0.01em; text-wrap: balance }
+h1 small { font-family: var(--body); font-weight: 400; font-size: 14px; color: var(--muted); margin-left: 8px; letter-spacing: 0 }
+h2 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0 }
+h3 { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0; font-weight: 600 }
+.badge { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--mid-soft); color: var(--mid); font-weight: 500 }
+.num { font-variant-numeric: tabular-nums }
+.mono { font-family: var(--mono); font-size: 12.5px }
+.muted { color: var(--muted) }
+
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--panel); border: 1px solid var(--line); border-radius: 10px }
+.strip > div { padding: 14px 16px; display: grid; gap: 2px; border-left: 1px solid var(--line) }
+.strip > div:first-child { border-left: 0 }
+.strip b { font-family: var(--display); font-size: 24px; font-weight: 600 }
+.strip span { color: var(--muted); font-size: 12.5px }
+.meter { height: 6px; background: var(--soft); border-radius: 3px; overflow: hidden; margin-top: 6px }
+.meter i { display: block; height: 100%; background: var(--accent) }
+
+nav.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line) }
+nav.tabs button { font: inherit; font-weight: 500; background: none; border: 0; padding: 8px 12px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent) }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .row:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+.desk { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 16px; align-items: start }
+.queue { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-rows: auto 1fr; max-height: 78vh; min-width: 0 }
+.qhead { padding: 12px; display: grid; gap: 8px; border-bottom: 1px solid var(--line) }
+.filters { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { font: inherit; font-size: 12.5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink) }
+input[type="search"], textarea, select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; width: 100% }
+.list { overflow-y: auto; min-height: 0 }
+.row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border: 0; border-bottom: 1px solid var(--soft); border-left: 3px solid transparent; cursor: pointer; background: none; width: 100%; text-align: left; font: inherit; color: inherit }
+.row:hover { background: var(--soft) }
+.row[aria-current="true"] { background: var(--accent-soft); border-left-color: var(--accent) }
+.row .who { min-width: 0 }
+.row .who div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.score { font-family: var(--display); font-weight: 600; font-size: 18px; text-align: center; border-radius: 6px; padding: 4px 0 }
+.s-high { background: var(--high-soft); color: var(--high) }
+.s-mid { background: var(--mid-soft); color: var(--mid) }
+.s-low { background: var(--low-soft); color: var(--low) }
+.state { font-size: 11.5px; padding: 2px 8px; border-radius: 999px; white-space: nowrap }
+.st-confirmed { background: var(--high-soft); color: var(--high) }
+.st-notfraud { background: var(--good-soft); color: var(--good) }
+.st-inconclusive { background: var(--mid-soft); color: var(--mid) }
+.st-open { background: var(--soft); color: var(--muted) }
+
+.case { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 20px; min-width: 0 }
+.casehead { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start }
+.bigscore { display: grid; justify-items: end; gap: 2px }
+.bigscore b { font-family: var(--display); font-size: 40px; line-height: 1; font-weight: 600 }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 20px; margin: 0 }
+.facts div { display: grid; gap: 1px; min-width: 0 }
+.facts dt { font-size: 12px; color: var(--muted) }
+.facts dd { margin: 0; overflow-wrap: anywhere }
+.reasons { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none }
+.reasons li { display: grid; grid-template-columns: 84px minmax(0, 1fr) 120px; gap: 12px; align-items: center }
+.fam { font-size: 11.5px; padding: 2px 8px; border-radius: 4px; background: var(--soft); color: var(--muted); text-align: center }
+.bar { height: 8px; background: var(--soft); border-radius: 4px; overflow: hidden }
+.bar i { display: block; height: 100%; background: var(--high) }
+.links { width: 100%; border-collapse: collapse; font-size: 13px }
+.links th, .links td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--soft); white-space: nowrap }
+.links th { font-weight: 500; color: var(--muted); font-size: 12px }
+.tablewrap { overflow-x: auto }
+.decide { display: grid; gap: 10px; padding: 16px; background: var(--bg); border-radius: 8px }
+.decide .btns { display: flex; flex-wrap: wrap; gap: 8px }
+.btn { font: inherit; font-weight: 500; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer }
+.btn[aria-pressed="true"].b-confirmed { background: var(--high-soft); border-color: var(--high); color: var(--high) }
+.btn[aria-pressed="true"].b-notfraud { background: var(--good-soft); border-color: var(--good); color: var(--good) }
+.btn[aria-pressed="true"].b-inconclusive { background: var(--mid-soft); border-color: var(--mid); color: var(--mid) }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--panel) }
+.btn:disabled { opacity: 0.5; cursor: not-allowed }
+.note { font-size: 12.5px; color: var(--muted) }
+.truth { font-size: 12.5px; padding: 8px 12px; border-radius: 6px; border: 1px dashed var(--line) }
+label.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--muted); cursor: pointer }
+
+.bt { display: grid; gap: 16px }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0 }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+.vs div { display: grid; gap: 2px }
+.vs b { font-family: var(--display); font-size: 32px; font-weight: 600 }
+.hbars { display: grid; gap: 10px }
+.hbar { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr) 64px; gap: 10px; align-items: center; font-size: 13px }
+.hbar .track { height: 12px; background: var(--soft); border-radius: 3px; position: relative; overflow: hidden }
+.hbar .track i { position: absolute; inset: 0 auto 0 0; background: var(--accent) }
+.hbar .track i.ref { background: var(--mid) }
+input[type="range"] { width: 100%; accent-color: var(--accent) }
+.cap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center }
+.cap output { font-family: var(--display); font-size: 20px; font-weight: 600 }
+
+@media (max-width: 860px) {
+  .desk { grid-template-columns: minmax(0, 1fr) }
+  .queue { max-height: 48vh }
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .strip > div:nth-child(3) { border-left: 0 }
+  .strip > div:nth-child(n+3) { border-top: 1px solid var(--line) }
+  .reasons li { grid-template-columns: 72px minmax(0, 1fr); }
+  .reasons li .bar { grid-column: 2 }
+}
+@media (prefers-reduced-motion: no-preference) { .bar i, .hbar .track i, .meter i { transition: width .25s ease } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>SIU Referral Desk <small>Prime Insurance · claims fraud, phase 1 prototype</small></h1>
+    <span class="badge">Synthetic claims, not real data</span>
+  </header>
+
+  <section class="strip" aria-label="Summary">
+    <div><b class="num" id="sum-claims">–</b><span>claims scored in the back-test window</span></div>
+    <div><b class="num" id="sum-ref">–</b><span>referred to SIU at today's capacity</span></div>
+    <div><b class="num" id="sum-caught">–</b><span id="sum-caught-label">planted fraud caught</span></div>
+    <div><b class="num" id="sum-labels">–</b><span id="sum-labels-label">confirmed cases toward the 300 needed for a trained model</span><div class="meter"><i id="sum-meter" style="width:0"></i></div></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-desk" aria-selected="true" aria-controls="view-desk">Referral queue</button>
+    <button role="tab" id="tab-bt" aria-selected="false" aria-controls="view-bt">Back-test and fairness</button>
+  </nav>
+
+  <section id="view-desk" role="tabpanel" aria-labelledby="tab-desk" class="desk">
+    <div class="queue">
+      <div class="qhead">
+        <input type="search" id="q" placeholder="Search claim, claimant, account, repairer" aria-label="Search claims">
+        <div class="filters" role="group" aria-label="Filter queue">
+          <button class="chip" data-f="open" aria-pressed="true">To review</button>
+          <button class="chip" data-f="done" aria-pressed="false">Decided</button>
+          <button class="chip" data-f="all" aria-pressed="false">All referred</button>
+          <button class="chip" data-f="below" aria-pressed="false">Below threshold</button>
+        </div>
+      </div>
+      <div class="list" id="list" role="list"></div>
+    </div>
+    <article class="case" id="case" aria-live="polite"></article>
+  </section>
+
+  <section id="view-bt" role="tabpanel" aria-labelledby="tab-bt" class="bt" hidden>
+    <div class="card">
+      <h2>SIU capacity</h2>
+      <div class="cap">
+        <label for="cap">Claims the SIU can review, as a share of all claims</label>
+        <output id="cap-out" for="cap">5%</output>
+      </div>
+      <input type="range" id="cap" min="1" max="15" step="1" value="5">
+      <p class="note" id="cap-note"></p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Fraud caught at this capacity</h3>
+        <div class="vs">
+          <div><b class="num" id="bt-engine">–</b><span class="muted">scoring engine</span></div>
+          <div><b class="num" id="bt-base">–</b><span class="muted">checklist (early loss, late report, no police report)</span></div>
+        </div>
+        <p class="note" id="bt-prec"></p>
+      </div>
+      <div class="card">
+        <h3>Caught by type of planted fraud</h3>
+        <div class="hbars" id="bt-types"></div>
+      </div>
+      <div class="card">
+        <h3>Referral rate by region</h3>
+        <div class="hbars" id="bt-regions"></div>
+        <p class="note">A fairness check (FR-12). Rates should sit close together; a region far above the rest needs a reason before go-live.</p>
+      </div>
+    </div>
+    <p class="note">The checklist baseline stands in for a manual red-flag review; Prime's real current method is unknown. Planted fraud exists only in this synthetic data, so these numbers show how the engine behaves, not how it will perform on Prime's claims.</p>
+  </section>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const CLAIMS = DATA.claims;
+const BY_ID = new Map(CLAIMS.map(c => [c.claim_id, c]));
+const LABEL_TARGET = 300;
+const BASE_KEYS = new Set(["early_loss", "late_report", "no_police_report"]);
+const OUTCOMES = { confirmed: "Confirmed fraud", notfraud: "Not fraud", inconclusive: "Inconclusive" };
+
+let outcomes = {};          // claim_id -> {outcome, note, by, at}
+let db = null, user = null, myId = null, saving = false;
+let filter = "open", query = "", selected = null, showTruth = false;
+try { showTruth = localStorage.getItem("siu-truth") === "1"; } catch (e) {}
+
+const $ = id => document.getElementById(id);
+const fmtMoney = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+const band = s => s >= 70 ? "high" : s >= 50 ? "mid" : "low";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const stateOf = id => outcomes[id]?.outcome || "open";
+
+function summary() {
+  const m = DATA.metrics;
+  $("sum-claims").textContent = m.claims.toLocaleString();
+  $("sum-ref").textContent = m.capacity;
+  $("sum-caught").textContent = `${m.engine.fraud_caught} of ${m.planted_fraud}`;
+  $("sum-caught-label").textContent = `planted fraud caught, against ${m.baseline_checklist.fraud_caught} for a checklist`;
+  const historic = m.historic_confirmed;
+  const fresh = Object.values(outcomes).filter(o => o.outcome === "confirmed").length;
+  const total = historic + fresh;
+  $("sum-labels").textContent = `${total} of ${LABEL_TARGET}`;
+  $("sum-labels-label").textContent = `confirmed cases toward a trained model (${historic} historic, ${fresh} from this desk)`;
+  $("sum-meter").style.width = Math.min(100, total / LABEL_TARGET * 100) + "%";
+}
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  return CLAIMS.filter(c => {
+    if (filter === "open" && (!c.referred || stateOf(c.claim_id) !== "open")) return false;
+    if (filter === "done" && stateOf(c.claim_id) === "open") return false;
+    if (filter === "all" && !c.referred) return false;
+    if (filter === "below" && (c.referred || c.score < 20)) return false;
+    if (!q) return true;
+    return [c.claim_id, c.claimant, c.bank_account, c.phone, c.repairer, c.policy_id].some(v => String(v).toLowerCase().includes(q));
+  });
+}
+
+function renderList() {
+  const rows = visible();
+  const list = $("list");
+  if (!rows.length) {
+    list.innerHTML = `<p class="note" style="padding:16px">${filter === "open" ? "Every referred claim has a decision. Switch to Decided to review them." : "No claims match."}</p>`;
+    return;
+  }
+  list.innerHTML = rows.slice(0, 300).map(c => {
+    const st = stateOf(c.claim_id);
+    return `<button class="row" role="listitem" data-id="${c.claim_id}" aria-current="${c.claim_id === selected}">
+      <div class="score s-${band(c.score)} num">${c.score}</div>
+      <div class="who"><div><span class="mono">${c.claim_id}</span> · ${esc(c.claimant)}</div>
+        <div class="muted" style="font-size:12.5px">${c.line} · ${c.peril} · ${fmtMoney(c.amount_claimed)}</div></div>
+      <span class="state st-${st}">${st === "open" ? "To review" : OUTCOMES[st]}</span>
+    </button>`;
+  }).join("");
+}
+
+function renderCase() {
+  const el = $("case");
+  const c = BY_ID.get(selected);
+  if (!c) { el.innerHTML = `<p class="muted">Pick a claim from the queue to open its case file.</p>`; return; }
+  const linked = c.network_id ? CLAIMS.filter(x => x.network_id === c.network_id && x.claim_id !== c.claim_id) : [];
+  const o = outcomes[c.claim_id];
+  const maxPts = 30;
+  el.innerHTML = `
+    <div class="casehead">
+      <div style="display:grid;gap:4px;min-width:0">
+        <h2><span class="mono" style="font-size:16px">${c.claim_id}</span> · ${esc(c.claimant)}</h2>
+        <span class="muted">${c.line} · ${c.peril} · ${c.region} region · policy <span class="mono">${c.policy_id}</span></span>
+      </div>
+      <div class="bigscore"><b class="num" style="color:var(--${band(c.score)})">${c.score}</b>
+        <span class="note">risk score · ${c.referred ? "referred" : "below referral threshold of " + DATA.metrics.threshold}</span></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Amount claimed</dt><dd class="num">${fmtMoney(c.amount_claimed)}</dd></div>
+      <div><dt>Policy started</dt><dd class="num">${c.policy_inception}</dd></div>
+      <div><dt>Loss date</dt><dd class="num">${c.loss_date}</dd></div>
+      <div><dt>Reported</dt><dd class="num">${c.reported_date}</dd></div>
+      <div><dt>Payee account</dt><dd class="mono">${c.bank_account}</dd></div>
+      <div><dt>Phone</dt><dd class="mono">${c.phone}</dd></div>
+      <div><dt>Repairer</dt><dd class="mono">${c.repairer}</dd></div>
+      <div><dt>Invoice</dt><dd class="mono">${c.invoice_no}</dd></div>
+    </dl>
+    <section style="display:grid;gap:10px">
+      <h3>Why it scored ${c.score}</h3>
+      ${c.reasons.length ? `<ul class="reasons">${c.reasons.map(r => `
+        <li><span class="fam">${r.family}</span><span>${esc(r.reason)}</span>
+          <span class="bar" title="${r.points} points"><i style="width:${Math.min(100, r.points / maxPts * 100)}%"></i></span></li>`).join("")}</ul>`
+        : `<p class="note">No rule, anomaly or network signal fired.</p>`}
+    </section>
+    ${linked.length ? `<section style="display:grid;gap:10px">
+      <h3>Linked claims (${linked.length}) sharing an account or phone</h3>
+      <div class="tablewrap"><table class="links"><thead><tr><th>Claim</th><th>Claimant</th><th>Account</th><th>Phone</th><th>Repairer</th><th>Score</th><th>Decision</th></tr></thead><tbody>
+      ${linked.map(l => `<tr><td><button class="chip mono" data-open="${l.claim_id}">${l.claim_id}</button></td><td>${esc(l.claimant)}</td>
+        <td class="mono" style="${l.bank_account === c.bank_account ? "color:var(--high);font-weight:500" : ""}">${l.bank_account}</td>
+        <td class="mono" style="${l.phone === c.phone ? "color:var(--high);font-weight:500" : ""}">${l.phone}</td>
+        <td class="mono">${l.repairer}</td><td class="num">${l.score}</td><td>${l.siu_history === "confirmed" ? '<span class="state st-confirmed">Confirmed before</span>' : (outcomes[l.claim_id] ? OUTCOMES[outcomes[l.claim_id].outcome] : "–")}</td></tr>`).join("")}
+      </tbody></table></div></section>` : ""}
+    <section class="decide" aria-label="Record outcome">
+      <h3>Investigator outcome</h3>
+      <div class="btns" role="group" aria-label="Outcome">
+        ${Object.entries(OUTCOMES).map(([k, v]) => `<button class="btn b-${k}" data-out="${k}" aria-pressed="${o?.outcome === k}">${v}</button>`).join("")}
+      </div>
+      <label for="reason" class="note">Reason (required). It becomes the label a future model learns from.</label>
+      <textarea id="reason" rows="2" placeholder="What you checked and what you found">${esc(o?.note || "")}</textarea>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="btn primary" id="save">Save outcome</button>
+        <span class="note" id="save-msg">${o ? `Saved ${new Date(o.at).toLocaleString()}${o.by ? ` by <span data-uid="${esc(o.by)}">${o.by === myId ? "you" : "a colleague"}</span>` : ""}` : (db ? "Not decided yet." : "Outcomes can't be saved in this view; they last until you reload.")}</span>
+      </div>
+      <p class="note">The system never declines a claim. A confirmed outcome goes to the claims handler for action.</p>
+    </section>
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+      <label class="toggle"><input type="checkbox" id="truth" ${showTruth ? "checked" : ""}> Show planted answer (test data only)</label>
+      ${showTruth ? `<span class="truth">${c.truth_fraud ? "Planted fraud: " + esc(c.truth_type) : "Planted as a genuine claim"}</span>` : ""}
+    </div>`;
+  let pick = o?.outcome || null;
+  el.querySelectorAll("[data-out]").forEach(b => b.onclick = () => {
+    pick = b.dataset.out;
+    el.querySelectorAll("[data-out]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  });
+  el.querySelectorAll("[data-open]").forEach(b => b.onclick = () => open(b.dataset.open));
+  $("truth").onchange = e => { showTruth = e.target.checked; try { localStorage.setItem("siu-truth", showTruth ? "1" : "0"); } catch (err) {} renderCase(); };
+  $("save").onclick = () => save(c.claim_id, pick, $("reason").value.trim());
+  resolveNames();
+}
+
+async function resolveNames() {
+  if (!user) return;
+  const ids = [...document.querySelectorAll("[data-uid]")].map(n => n.dataset.uid).filter(id => id !== myId);
+  if (!ids.length) return;
+  try {
+    const ps = await user.profiles(ids);
+    document.querySelectorAll("[data-uid]").forEach(n => { if (n.dataset.uid !== myId) n.textContent = ps[n.dataset.uid]?.name || "a colleague"; });
+  } catch (e) {}
+}
+
+async function save(id, outcome, note) {
+  const msg = $("save-msg");
+  if (!outcome) { msg.textContent = "Pick an outcome first."; return; }
+  if (!note) { msg.textContent = "Add a reason before saving."; return; }
+  if (saving) return;
+  const rec = { outcome, note, at: new Date().toISOString(), by: myId || null, score: BY_ID.get(id).score };
+  if (!db) { outcomes[id] = rec; afterChange(); msg.textContent = "Recorded for this session only."; return; }
+  saving = true; $("save").disabled = true; msg.textContent = "Saving…";
+  try {
+    await db.collection("outcomes").doc(id).set(rec);
+    outcomes[id] = rec; afterChange();
+  } catch (e) {
+    msg.textContent = e?.code === "permission_denied" || e?.code === "not_granted"
+      ? "You can view this desk but not record outcomes. Ask the owner for edit access."
+      : "Couldn't save. Check your connection and try again.";
+  } finally { saving = false; const b = $("save"); if (b) b.disabled = false; }
+}
+
+function afterChange() { summary(); renderList(); renderCase(); }
+
+function open(id) {
+  selected = id;
+  renderList(); renderCase();
+  if (window.matchMedia("(max-width: 860px)").matches) $("case").scrollIntoView({ block: "start" });
+}
+
+// Back-test, recomputed live as the SIU capacity changes (FR-11)
+function backtest() {
+  const share = Number($("cap").value) / 100;
+  $("cap-out").textContent = $("cap").value + "%";
+  const n = Math.round(CLAIMS.length * share);
+  const fraudTotal = CLAIMS.filter(c => c.truth_fraud).length;
+  const top = CLAIMS.slice(0, n);   // already sorted by score
+  const caught = top.filter(c => c.truth_fraud).length;
+  const basePts = c => c.reasons.filter(r => BASE_KEYS.has(r.key)).reduce((s, r) => s + r.points, 0);
+  const base = CLAIMS.filter(c => basePts(c) > 0).sort((a, b) => basePts(b) - basePts(a)).slice(0, n);
+  const baseCaught = base.filter(c => c.truth_fraud).length;
+  const threshold = top.length ? top[top.length - 1].score : 100;
+  $("cap-note").textContent = `${n} referrals, about ${Math.round(n / 104)} a week over two years of claims. Referral threshold: score ${threshold} or above.`;
+  $("bt-engine").textContent = `${caught} / ${fraudTotal}`;
+  $("bt-base").textContent = `${baseCaught} / ${fraudTotal}`;
+  $("bt-prec").textContent = `${Math.round(caught / Math.max(1, n) * 100)}% of the engine's referrals are planted fraud, against ${Math.round(baseCaught / Math.max(1, base.length) * 100)}% for the checklist.`;
+  const types = {};
+  CLAIMS.filter(c => c.truth_fraud).forEach(c => { const t = types[c.truth_type] ||= { total: 0, caught: 0 }; t.total++; });
+  top.filter(c => c.truth_fraud).forEach(c => types[c.truth_type].caught++);
+  $("bt-types").innerHTML = Object.entries(types).sort((a, b) => b[1].caught / b[1].total - a[1].caught / a[1].total).map(([k, v]) =>
+    `<div class="hbar"><span>${esc(k)}</span><span class="track"><i style="width:${v.caught / v.total * 100}%"></i></span><span class="num muted">${v.caught} of ${v.total}</span></div>`).join("");
+  const regions = {};
+  CLAIMS.forEach(c => { const r = regions[c.region] ||= { claims: 0, ref: 0 }; r.claims++; });
+  top.forEach(c => regions[c.region].ref++);
+  const maxRate = Math.max(...Object.values(regions).map(r => r.ref / r.claims), 0.0001);
+  $("bt-regions").innerHTML = Object.entries(regions).sort().map(([k, v]) =>
+    `<div class="hbar"><span>${k}</span><span class="track"><i class="ref" style="width:${v.ref / v.claims / maxRate * 100}%"></i></span><span class="num muted">${(v.ref / v.claims * 100).toFixed(1)}%</span></div>`).join("");
+}
+
+// Wiring
+document.querySelectorAll(".chip[data-f]").forEach(b => b.onclick = () => {
+  filter = b.dataset.f;
+  document.querySelectorAll(".chip[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  renderList();
+});
+$("q").oninput = e => { query = e.target.value; renderList(); };
+$("list").onclick = e => { const r = e.target.closest(".row"); if (r) open(r.dataset.id); };
+document.querySelectorAll("[role=tab]").forEach(t => t.onclick = () => {
+  document.querySelectorAll("[role=tab]").forEach(x => x.setAttribute("aria-selected", x === t));
+  $("view-desk").hidden = t.id !== "tab-desk";
+  $("view-bt").hidden = t.id !== "tab-bt";
+});
+$("cap").oninput = backtest;
+
+selected = CLAIMS.find(c => c.referred && c.network_id)?.claim_id || CLAIMS[0].claim_id;
+summary(); renderList(); renderCase(); backtest();
+
+// Shared outcomes: every investigator's decisions, live (SR-F09, SR-F10)
+(async () => {
+  try {
+    user = await window.claude?.use?.("user");
+    if (user) myId = await user.id().catch(() => null);
+  } catch (e) {}
+  try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
+  if (!db) { renderCase(); return; }
+  db.collection("outcomes").onSnapshot(snap => {
+    const next = {};
+    snap.docs.forEach(d => { const v = d.data(); if (v && OUTCOMES[v.outcome]) next[d.id] = v; });
+    outcomes = next;
+    afterChange();
+  }, () => {});
+})();
+</script>

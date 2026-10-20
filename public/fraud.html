@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime SIU Referral Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/desk.css">
+
+</head>
+<body>
+<header class="appbar"><div class="appbar-in"><a class="brand" href="index.html">Prime Insurance AI</a><nav aria-label="Desks"><a href="fraud.html" aria-current="page">Fraud desk</a><a href="intake.html">Claims intake</a><a href="reconciliation.html">Reconciliation</a></nav><span id="app-status" class="note"></span></div></header>
+
+<div class="wrap">
+  <header class="top">
+    <h1>SIU Referral Desk <small>Prime Insurance · claims fraud, phase 1 prototype</small></h1>
+    <span class="badge">Synthetic claims, not real data</span>
+  </header>
+
+  <section class="strip" aria-label="Summary">
+    <div><b class="num" id="sum-claims">–</b><span>claims scored in the back-test window</span></div>
+    <div><b class="num" id="sum-ref">–</b><span>referred to SIU at today's capacity</span></div>
+    <div><b class="num" id="sum-caught">–</b><span id="sum-caught-label">planted fraud caught</span></div>
+    <div><b class="num" id="sum-labels">–</b><span id="sum-labels-label">confirmed cases toward the 300 needed for a trained model</span><div class="meter"><i id="sum-meter" style="width:0"></i></div></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-desk" aria-selected="true" aria-controls="view-desk">Referral queue</button>
+    <button role="tab" id="tab-bt" aria-selected="false" aria-controls="view-bt">Back-test and fairness</button>
+  </nav>
+
+  <section id="view-desk" role="tabpanel" aria-labelledby="tab-desk" class="desk">
+    <div class="queue">
+      <div class="qhead">
+        <input type="search" id="q" placeholder="Search claim, claimant, account, repairer" aria-label="Search claims">
+        <div class="filters" role="group" aria-label="Filter queue">
+          <button class="chip" data-f="open" aria-pressed="true">To review</button>
+          <button class="chip" data-f="done" aria-pressed="false">Decided</button>
+          <button class="chip" data-f="all" aria-pressed="false">All referred</button>
+          <button class="chip" data-f="below" aria-pressed="false">Below threshold</button>
+        </div>
+      </div>
+      <div class="list" id="list" role="list"></div>
+    </div>
+    <article class="case" id="case" aria-live="polite"></article>
+  </section>
+
+  <section id="view-bt" role="tabpanel" aria-labelledby="tab-bt" class="bt" hidden>
+    <div class="card">
+      <h2>SIU capacity</h2>
+      <div class="cap">
+        <label for="cap">Claims the SIU can review, as a share of all claims</label>
+        <output id="cap-out" for="cap">5%</output>
+      </div>
+      <input type="range" id="cap" min="1" max="15" step="1" value="5">
+      <p class="note" id="cap-note"></p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Fraud caught at this capacity</h3>
+        <div class="vs">
+          <div><b class="num" id="bt-engine">–</b><span class="muted">scoring engine</span></div>
+          <div><b class="num" id="bt-base">–</b><span class="muted">checklist (early loss, late report, no police report)</span></div>
+        </div>
+        <p class="note" id="bt-prec"></p>
+      </div>
+      <div class="card">
+        <h3>Caught by type of planted fraud</h3>
+        <div class="hbars" id="bt-types"></div>
+      </div>
+      <div class="card">
+        <h3>Referral rate by region</h3>
+        <div class="hbars" id="bt-regions"></div>
+        <p class="note">A fairness check (FR-12). Rates should sit close together; a region far above the rest needs a reason before go-live.</p>
+      </div>
+    </div>
+    <p class="note">The checklist baseline stands in for a manual red-flag review; Prime's real current method is unknown. Planted fraud exists only in this synthetic data, so these numbers show how the engine behaves, not how it will perform on Prime's claims.</p>
+  </section>
+</div>
+
+
+<script src="assets/claude-shim.js"></script>
+<script src="assets/boot.js" data-data="data/scored.json" data-app="assets/fraud.js"></script>
+</body>
+</html>

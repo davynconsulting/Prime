@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime Claims Intake Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/desk.css">
+<style>
+
+/* Intake additions: the case file shows the email beside what was read from it. */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px }
+.email { white-space: pre-wrap; font-size: 13.5px; background: var(--bg); border-radius: 8px; padding: 14px 16px; margin: 0; font-family: var(--body); overflow-wrap: anywhere }
+.fields { display: grid; gap: 8px }
+.field { display: grid; grid-template-columns: 112px minmax(0, 1fr) 44px; gap: 8px; align-items: center }
+.field label { font-size: 12.5px; color: var(--muted) }
+.field input, .field select { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; width: 100%; min-width: 0 }
+.field input.changed, .field select.changed { border-color: var(--accent); background: var(--accent-soft) }
+.cf { font-size: 11.5px; text-align: center; border-radius: 4px; padding: 2px 0 }
+.checks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none }
+.checks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 13.5px }
+.ok::before { content: "✓"; color: var(--good); font-weight: 600 }
+.no::before { content: "✕"; color: var(--high); font-weight: 600 }
+.na::before { content: "–"; color: var(--muted) }
+.verdict { padding: 14px 16px; border-radius: 8px; display: grid; gap: 6px }
+.v-stp { background: var(--good-soft) }
+.v-route { background: var(--mid-soft) }
+.v-siu { background: var(--high-soft) }
+.src { font-size: 12px; color: var(--muted) }
+.draft { white-space: pre-wrap; font-size: 13px; background: var(--bg); border: 1px dashed var(--line); border-radius: 6px; padding: 10px 12px; margin: 0; font-family: var(--body) }
+@media (max-width: 1060px) { .split { grid-template-columns: minmax(0, 1fr) } }
+</style>
+</head>
+<body>
+<header class="appbar"><div class="appbar-in"><a class="brand" href="index.html">Prime Insurance AI</a><nav aria-label="Desks"><a href="fraud.html">Fraud desk</a><a href="intake.html" aria-current="page">Claims intake</a><a href="reconciliation.html">Reconciliation</a></nav><span id="app-status" class="note"></span></div></header>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Claims Intake Desk <small>Prime Insurance · claims intake and triage, phase 2 prototype</small></h1>
+    <span class="badge">Synthetic claim emails, not real data</span>
+  </header>
+
+  <section class="strip" aria-label="Summary">
+    <div><b class="num" id="s-msgs">–</b><span>first notices of loss in the inbox</span></div>
+    <div><b class="num" id="s-stp">–</b><span id="s-stp-l">could settle straight through</span></div>
+    <div><b class="num" id="s-gate">–</b><span id="s-gate-l">stopped only by the fraud score</span></div>
+    <div><b class="num" id="s-done">–</b><span id="s-done-l">handled on this desk</span></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-q" aria-selected="true" aria-controls="view-q">Inbox</button>
+    <button role="tab" id="tab-bt" aria-selected="false" aria-controls="view-bt">Extraction accuracy</button>
+  </nav>
+
+  <section id="view-q" role="tabpanel" aria-labelledby="tab-q" class="desk">
+    <div class="queue">
+      <div class="qhead">
+        <input type="search" id="q" placeholder="Search sender, subject, claim" aria-label="Search inbox">
+        <div class="filters" role="group" aria-label="Filter inbox">
+          <button class="chip" data-f="open" aria-pressed="true">New</button>
+          <button class="chip" data-f="done" aria-pressed="false">Handled</button>
+          <button class="chip" data-f="all" aria-pressed="false">All</button>
+        </div>
+      </div>
+      <div class="list" id="list" role="list"></div>
+    </div>
+    <article class="case" id="case" aria-live="polite"></article>
+  </section>
+
+  <section id="view-bt" role="tabpanel" aria-labelledby="tab-bt" class="bt" hidden>
+    <div class="cards">
+      <div class="card">
+        <h3>Fields read correctly</h3>
+        <div class="vs">
+          <div><b class="num" id="acc-rules">–</b><span class="muted">rules only, all 40 emails</span></div>
+          <div><b class="num" id="acc-claude">–</b><span class="muted" id="acc-claude-l">Claude, on emails read so far</span></div>
+        </div>
+        <p class="note">PRD target CL acceptance: 95% of key fields. Read a few emails with Claude on the Inbox tab to fill in the second number.</p>
+      </div>
+      <div class="card">
+        <h3>Accuracy by field</h3>
+        <div class="tablewrap"><table class="age links"><thead><tr><th>Field</th><th style="text-align:right">Rules</th><th style="text-align:right">Claude</th></tr></thead><tbody id="acc-fields"></tbody></table></div>
+      </div>
+      <div class="card">
+        <h3>Why the fraud gate matters</h3>
+        <p id="gate-text" style="margin:0"></p>
+        <p class="note">Straight-through settlement is allowed only when the phase 1 fraud score is under 30 (CL-08).</p>
+      </div>
+    </div>
+    <p class="note">Every email here was generated from a synthetic claim, so each field has a known right answer. Real emails are messier; accuracy must be measured on a sample of Prime's own claims before any straight-through settlement is switched on.</p>
+  </section>
+</div>
+
+
+<script src="assets/claude-shim.js"></script>
+<script src="assets/boot.js" data-data="data/fnol.json" data-app="assets/intake.js"></script>
+</body>
+</html>

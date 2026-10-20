@@ -1,0 +1,17 @@
+{
+  "name": "prime-insurance-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prime Insurance AI desks: claims fraud, claims intake and bank reconciliation (synthetic data prototype)",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "build:data": "python3 scripts/build.py --data",
+    "dev": "vercel dev",
+    "serve": "python3 -m http.server 8080 --directory public"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0"
+  }
+}

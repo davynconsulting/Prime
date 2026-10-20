@@ -1,0 +1,3134 @@
+{
+ "messages": [
+  {
+   "msg_id": "FNOL-001",
+   "received": "2026-03-31",
+   "from": "obi.eze@mail.example",
+   "subject": "Incident report",
+   "text": "Good morning,\n\nI want to report a claim. Last Wednesday a stone cracked my windscreen on the expressway at Okota Road, Isolo.\nRef: P000211\nThe loss comes to N400.56.\nThank you.\n\nYours faithfully,\nObi Eze\n08035264676",
+   "claim_id": "C100211",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000211",
+    "holder": "Obi Eze",
+    "product": "Motor comprehensive",
+    "inception": "2024-12-30",
+    "expiry": "2026-12-30",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000211",
+    "claimant_name": "Obi Eze",
+    "loss_date": "2026-03-25",
+    "peril": "Windscreen",
+    "location": "Okota Road, Isolo",
+    "amount_claimed": 400.56,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000211",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Obi Eze",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Okota Road, Isolo",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 400.56,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-002",
+   "received": "2025-09-07",
+   "from": "david.ibrahim@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nPlease note that a stone cracked my windscreen on the expressway on 01/09/2025. It happened at Ademola Adetokunbo Crescent, Abuja.\nI am insured with you under P001874.\nI am claiming N354.86.\nPlease advise on next steps.\n\nThanks,\nDavid Ibrahim\n08018561175",
+   "claim_id": "C101874",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001874",
+    "holder": "David Ibrahim",
+    "product": "Motor comprehensive",
+    "inception": "2024-05-26",
+    "expiry": "2026-05-26",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001874",
+    "claimant_name": "David Ibrahim",
+    "loss_date": "2025-09-01",
+    "peril": "Windscreen",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": 354.86,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001874",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "David Ibrahim",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-09-01",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 354.86,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-003",
+   "received": "2025-11-07",
+   "from": "gbenga.smith@mail.example",
+   "subject": "Claim notification - Gbenga Smith",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: a motorcyclist was injured when he collided with my car. Date: 05/11/2025. Location: Aba Road, Port Harcourt.\nMy policy is P001990.\nI am still waiting for a quote for the repairs.\nI reported it to the police and have a report, reference ABJ/6475/26.\nAttached: police report, medical report, other party's details.\nKindly treat as urgent.\n\nRegards,\nGbenga Smith\n08094898227",
+   "claim_id": "C101990",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001990",
+    "holder": "Gbenga Smith",
+    "product": "Motor comprehensive",
+    "inception": "2024-08-19",
+    "expiry": "2025-10-22",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001990",
+    "claimant_name": "Gbenga Smith",
+    "loss_date": "2025-11-05",
+    "peril": "Third-party injury",
+    "location": "Aba Road, Port Harcourt",
+    "amount_claimed": null,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 63,
+   "fraud_reasons": [
+    "Invoice number INV-50589 used on 3 claims",
+    "Reported 44 days after the loss"
+   ],
+   "planted_fraud": true,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001990",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Gbenga Smith",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-11-05",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Aba Road, Port Harcourt",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-004",
+   "received": "2026-08-31",
+   "from": "emma.chukwu@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nThis is to notify you of an incident: a pipe burst in the kitchen and flooded the ground floor. Date: last Wednesday. Location: Herbert Macaulay Way, Yaba.\nRef: P001442\nThe loss comes to 1,877.\nAttached: photos of the damage, repair estimate.\nThank you.\n\nThanks,\nEmma Chukwu\n08012515903",
+   "claim_id": "C101442",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P001442",
+    "holder": "Emma Chukwu",
+    "product": "Home buildings and contents",
+    "inception": "2026-06-28",
+    "expiry": "2027-06-28",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P001442",
+    "claimant_name": "Emma Chukwu",
+    "loss_date": "2026-08-26",
+    "peril": "Water damage",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 1876.55,
+    "police_report": false,
+    "documents": [
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 49,
+   "fraud_reasons": [
+    "Invoice number INV-53575 used on 2 claims"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001442",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Emma Chukwu",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Water damage",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 1877.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-005",
+   "received": "2026-01-07",
+   "from": "emma.taiwo@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nPlease note that another car hit the back of my car at a junction on 5 January 2026. It happened at Okota Road, Isolo.\nI am insured with you under policy number 1243.\nI am still waiting for a quote for the repairs.\nAttached: other driver's details.\nThank you.\n\nRegards,\nEmma Taiwo\n08096107500",
+   "claim_id": "C101243",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001243",
+    "holder": "Emma Taiwo",
+    "product": "Motor comprehensive",
+    "inception": "2023-11-11",
+    "expiry": "2026-11-10",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001243",
+    "claimant_name": "Emma Taiwo",
+    "loss_date": "2026-01-05",
+    "peril": "Collision",
+    "location": "Okota Road, Isolo",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": [
+     "other driver's details"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001243",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Emma Taiwo",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-01-05",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Okota Road, Isolo",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-006",
+   "received": "2026-07-27",
+   "from": "femi.yusuf@mail.example",
+   "subject": "Incident report",
+   "text": "Hello,\n\nPlease note that my windscreen was shattered by falling debris on 22/07/2026. It happened at Ahmadu Bello Way, Kaduna.\nI am insured with you under policy number 1033.\nThe loss comes to N511.82.\nAttached: photo of the windscreen.\nLet me know what else you need.\n\nThanks,\nFemi Yusuf\n08076117756",
+   "claim_id": "C101033",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001033",
+    "holder": "Femi Yusuf",
+    "product": "Motor comprehensive",
+    "inception": "2026-02-12",
+    "expiry": "2026-06-28",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001033",
+    "claimant_name": "Femi Yusuf",
+    "loss_date": "2026-07-22",
+    "peril": "Windscreen",
+    "location": "Ahmadu Bello Way, Kaduna",
+    "amount_claimed": 511.82,
+    "police_report": false,
+    "documents": [
+     "photo of the windscreen"
+    ]
+   },
+   "fraud_score": 16,
+   "fraud_reasons": [
+    "2 prior claims in 24 months"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001033",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Femi Yusuf",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-07-22",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ahmadu Bello Way, Kaduna",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 511.82,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photo of the windscreen"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-007",
+   "received": "2025-12-18",
+   "from": "pelumi.lawal@mail.example",
+   "subject": "New claim",
+   "text": "Dear Sir/Madam,\n\nI want to report a claim. On 16/12/2025 heavy wind brought a tree down onto the fence and garage at Okota Road, Isolo.\nRef: P000145\nI am still waiting for a quote for the repairs.\nLet me know what else you need.\n\nThanks,\nPelumi Lawal\n08054591998",
+   "claim_id": "C100145",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P000145",
+    "holder": "Pelumi Lawal",
+    "product": "Home buildings and contents",
+    "inception": "2024-11-23",
+    "expiry": "2026-11-23",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P000145",
+    "claimant_name": "Pelumi Lawal",
+    "loss_date": "2025-12-16",
+    "peril": "Storm",
+    "location": "Okota Road, Isolo",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 22,
+   "fraud_reasons": [
+    "Amount is 3.9x the typical storm claim"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000145",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Pelumi Lawal",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-12-16",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Storm",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Okota Road, Isolo",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-008",
+   "received": "2025-11-11",
+   "from": "anna.ibrahim@mail.example",
+   "subject": "Claim notification - Anna Ibrahim",
+   "text": "Hello,\n\nThis is to notify you of an incident: a motorcyclist was injured when he collided with my car. Date: last Thursday. Location: Ademola Adetokunbo Crescent, Abuja.\nMy policy is policy number 678.\nI am claiming N5,430.57.\nAttached: medical report.\nPlease advise on next steps.\n\nThanks,\nAnna Ibrahim\n08012788321",
+   "claim_id": "C100678",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000678",
+    "holder": "Anna Ibrahim",
+    "product": "Motor comprehensive",
+    "inception": "2023-12-03",
+    "expiry": "2025-12-02",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000678",
+    "claimant_name": "Anna Ibrahim",
+    "loss_date": "2025-11-06",
+    "peril": "Third-party injury",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": 5430.57,
+    "police_report": false,
+    "documents": [
+     "medical report"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000678",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Anna Ibrahim",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 5430.57,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-009",
+   "received": "2025-04-04",
+   "from": "chidi.williams@mail.example",
+   "subject": "Claim notification - Chidi Williams",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: heavy wind brought a tree down onto the fence and garage. Date: 3 April 2025. Location: Allen Avenue, Ikeja.\nI don't have my policy number with me but the policy is in my name.\nI am claiming N3,846.95.\nAttached: photos of the damage.\nPlease advise on next steps.\n\nYours faithfully,\nChidi Williams\n08088592563",
+   "claim_id": "C100520",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P000520",
+    "holder": "Chidi Williams",
+    "product": "Home buildings and contents",
+    "inception": "2023-07-20",
+    "expiry": "2025-03-21",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P000520",
+    "claimant_name": "Chidi Williams",
+    "loss_date": "2025-04-03",
+    "peril": "Storm",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": 3846.95,
+    "police_report": false,
+    "documents": [
+     "photos of the damage"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Chidi Williams",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-04-03",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Storm",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 3846.95,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photos of the damage"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-010",
+   "received": "2026-01-16",
+   "from": "lola.kalu@mail.example",
+   "subject": "Claim notification - Lola Kalu",
+   "text": "Good morning,\n\nThis is to notify you of an incident: an electrical fault caused a fire in the store room. Date: 15/01/2026. Location: Ahmadu Bello Way, Kaduna.\nI am insured with you under P001340.\nThe loss comes to 17,862.\nAttached: photos of the damage, fire service report.\nThank you.\n\nThanks,\nLola Kalu\n08065104625",
+   "claim_id": "C101340",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P001340",
+    "holder": "Lola Kalu",
+    "product": "Home buildings and contents",
+    "inception": "2023-06-27",
+    "expiry": "2026-06-26",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P001340",
+    "claimant_name": "Lola Kalu",
+    "loss_date": "2026-01-15",
+    "peril": "Fire",
+    "location": "Ahmadu Bello Way, Kaduna",
+    "amount_claimed": 17861.71,
+    "police_report": false,
+    "documents": [
+     "fire service report",
+     "photos of the damage"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001340",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Lola Kalu",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-01-15",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Fire",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ahmadu Bello Way, Kaduna",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 17862.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "fire service report",
+      "photos of the damage"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-011",
+   "received": "2026-06-11",
+   "from": "david.lawal@mail.example",
+   "subject": "Third-party injury claim",
+   "text": "Good morning,\n\nThis is to notify you of an incident: a pedestrian was hurt when I braked late. Date: 08/06/2026. Location: Ahmadu Bello Way, Kaduna.\nI am insured with you under P001366.\nI am still waiting for a quote for the repairs.\nI reported it to the police and have a report, reference IBD/3305/26.\nAttached: police report, medical report, other party's details.\nThank you.\n\nYours faithfully,\nDavid Lawal\n08050608800",
+   "claim_id": "C101366",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001366",
+    "holder": "David Lawal",
+    "product": "Motor comprehensive",
+    "inception": "2023-07-24",
+    "expiry": "2026-07-23",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001366",
+    "claimant_name": "David Lawal",
+    "loss_date": "2026-06-08",
+    "peril": "Third-party injury",
+    "location": "Ahmadu Bello Way, Kaduna",
+    "amount_claimed": null,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001366",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "David Lawal",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-06-08",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ahmadu Bello Way, Kaduna",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-012",
+   "received": "2025-11-17",
+   "from": "sade.garba@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nPlease note that my windscreen was shattered by falling debris on 14/11/2025. It happened at Ring Road, Ibadan.\nI don't have my policy number with me but the policy is in my name.\nI am still waiting for a quote for the repairs.\nAttached: photo of the windscreen.\nPlease advise on next steps.\n\nThanks,\nSade Garba\n08048527931",
+   "claim_id": "C101738",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001738",
+    "holder": "Sade Garba",
+    "product": "Motor comprehensive",
+    "inception": "2023-02-12",
+    "expiry": "2026-02-11",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001738",
+    "claimant_name": "Sade Garba",
+    "loss_date": "2025-11-14",
+    "peril": "Windscreen",
+    "location": "Ring Road, Ibadan",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": [
+     "photo of the windscreen"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Sade Garba",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-11-14",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ring Road, Ibadan",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photo of the windscreen"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-013",
+   "received": "2024-12-20",
+   "from": "obi.taiwo@mail.example",
+   "subject": "Claim notification - Obi Taiwo",
+   "text": "Hi Prime team,\n\nI want to report a claim. On 2024-12-17 thieves broke in and took electronics and jewellery at Ring Road, Ibadan.\nRef: P000385\nI am still waiting for a quote for the repairs.\nI reported it to the police and have a report, reference LAG/5024/26.\nAttached: police report, list of stolen items, proof of ownership.\nLet me know what else you need.\n\nThanks,\nObi Taiwo\n08061986715",
+   "claim_id": "C100385",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P000385",
+    "holder": "Obi Taiwo",
+    "product": "Home buildings and contents",
+    "inception": "2024-04-03",
+    "expiry": "2025-04-03",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P000385",
+    "claimant_name": "Obi Taiwo",
+    "loss_date": "2024-12-17",
+    "peril": "Burglary",
+    "location": "Ring Road, Ibadan",
+    "amount_claimed": null,
+    "police_report": true,
+    "documents": [
+     "list of stolen items",
+     "police report",
+     "proof of ownership"
+    ]
+   },
+   "fraud_score": 16,
+   "fraud_reasons": [
+    "Round-number amount (2,700)"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000385",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Obi Taiwo",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2024-12-17",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Theft",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ring Road, Ibadan",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "list of stolen items",
+      "police report",
+      "proof of ownership"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-014",
+   "received": "2026-01-31",
+   "from": "anna.bello@mail.example",
+   "subject": "Third-party injury claim",
+   "text": "Good morning,\n\nThis is to notify you of an incident: a pedestrian was hurt when I braked late. Date: last Monday. Location: Aba Road, Port Harcourt.\nI am insured with you under P000416.\nI am claiming 3,000.\nI reported it to the police and have a report, reference LAG/1596/26.\nAttached: medical report, other party's details, police report.\nPlease advise on next steps.\n\nThanks,\nAnna Bello\n08051239481",
+   "claim_id": "C100416",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000416",
+    "holder": "Anna Bello",
+    "product": "Motor comprehensive",
+    "inception": "2024-10-28",
+    "expiry": "2026-10-28",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000416",
+    "claimant_name": "Anna Bello",
+    "loss_date": "2026-01-26",
+    "peril": "Third-party injury",
+    "location": "Aba Road, Port Harcourt",
+    "amount_claimed": 2999.71,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000416",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Anna Bello",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Aba Road, Port Harcourt",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 3000.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-015",
+   "received": "2026-05-18",
+   "from": "funmi.garba@mail.example",
+   "subject": "Collision claim",
+   "text": "Hi Prime team,\n\nPlease note that a bus sideswiped my car in traffic on 2026-05-13. It happened at Okota Road, Isolo.\nRef: P000970\nThe repair estimate is 3,152.\nAttached: other driver's details, repair estimate, photos of the damage.\nThank you.\n\nRegards,\nFunmi Garba\n08062952765",
+   "claim_id": "C100970",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000970",
+    "holder": "Funmi Garba",
+    "product": "Motor comprehensive",
+    "inception": "2026-01-24",
+    "expiry": "2027-01-24",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000970",
+    "claimant_name": "Funmi Garba",
+    "loss_date": "2026-05-13",
+    "peril": "Collision",
+    "location": "Okota Road, Isolo",
+    "amount_claimed": 3151.51,
+    "police_report": false,
+    "documents": [
+     "other driver's details",
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000970",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Funmi Garba",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-05-13",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Okota Road, Isolo",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 3152.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details",
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-016",
+   "received": "2025-05-08",
+   "from": "grace.johnson@mail.example",
+   "subject": "Third-party injury claim",
+   "text": "Good morning,\n\nI want to report a claim. On 04/05/2025 a motorcyclist was injured when he collided with my car at Allen Avenue, Ikeja.\nI am insured with you under P001974.\nThe repair estimate is about 4,500.\nI reported it to the police and have a report, reference ABJ/8034/26.\nAttached: other party's details, police report, medical report.\nPlease advise on next steps.\n\nThanks,\nGrace Johnson\n08042230844",
+   "claim_id": "C101974",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001974",
+    "holder": "Grace Johnson",
+    "product": "Motor comprehensive",
+    "inception": "2023-12-02",
+    "expiry": "2025-12-01",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001974",
+    "claimant_name": "Grace Johnson",
+    "loss_date": "2025-05-04",
+    "peril": "Third-party injury",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": 4479.21,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 81,
+   "fraud_reasons": [
+    "Payee bank account changed 2 days before payment",
+    "Shares a bank account with 2 other claimants",
+    "Linked to a previously confirmed fraud case"
+   ],
+   "planted_fraud": true,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001974",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Grace Johnson",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-05-04",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 4500.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-017",
+   "received": "2026-03-15",
+   "from": "emma.danjuma@mail.example",
+   "subject": "New claim",
+   "text": "Hello,\n\nThis is to notify you of an incident: a motorcyclist was injured when he collided with my car. Date: 15 March 2026. Location: Herbert Macaulay Way, Yaba.\nI don't have my policy number with me but the policy is in my name.\nThe repair estimate is about 5,800.\nAttached: medical report, other party's details.\nLet me know what else you need.\n\nYours faithfully,\nEmma Danjuma\n08009034481",
+   "claim_id": "C100808",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000808",
+    "holder": "Emma Danjuma",
+    "product": "Motor comprehensive",
+    "inception": "2025-07-28",
+    "expiry": "2026-07-28",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000808",
+    "claimant_name": "Emma Danjuma",
+    "loss_date": "2026-03-15",
+    "peril": "Third-party injury",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 5816.32,
+    "police_report": false,
+    "documents": [
+     "medical report",
+     "other party's details"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Emma Danjuma",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-03-15",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 5800.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-018",
+   "received": "2024-10-25",
+   "from": "musa.garba@mail.example",
+   "subject": "Claim notification - Musa Garba",
+   "text": "Hello,\n\nThis is to notify you of an incident: a pedestrian was hurt when I braked late. Date: last Wednesday. Location: Allen Avenue, Ikeja.\nI am insured with you under P001744.\nI am claiming about 35,900.\nI reported it to the police and have a report, reference LAG/5313/26.\nAttached: other party's details, medical report, police report.\nPlease advise on next steps.\n\nYours faithfully,\nMusa Garba\n08098520255",
+   "claim_id": "C101744",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001744",
+    "holder": "Musa Garba",
+    "product": "Motor third party, fire and theft",
+    "inception": "2024-01-15",
+    "expiry": "2025-01-14",
+    "perils": [
+     "Theft",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001744",
+    "claimant_name": "Musa Garba",
+    "loss_date": "2024-10-23",
+    "peril": "Third-party injury",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": 35887.85,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 18,
+   "fraud_reasons": [
+    "Amount is 6.0x the typical third-party injury claim"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001744",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Musa Garba",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 35900.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-019",
+   "received": "2025-06-22",
+   "from": "grace.taiwo@mail.example",
+   "subject": "Water damage claim",
+   "text": "Hello,\n\nThis is to notify you of an incident: a pipe burst in the kitchen and flooded the ground floor. Date: 20/06/2025. Location: Ring Road, Ibadan.\nI am insured with you under policy number 1232.\nThe repair estimate is about 17,100.\nAttached: plumber's report, repair estimate.\nPlease advise on next steps.\n\nRegards,\nGrace Taiwo\n08031505840",
+   "claim_id": "C101232",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P001232",
+    "holder": "Grace Taiwo",
+    "product": "Home buildings and contents",
+    "inception": "2024-06-19",
+    "expiry": "2026-06-19",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P001232",
+    "claimant_name": "Grace Taiwo",
+    "loss_date": "2025-06-20",
+    "peril": "Water damage",
+    "location": "Ring Road, Ibadan",
+    "amount_claimed": 17113.29,
+    "police_report": false,
+    "documents": [
+     "plumber's report",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001232",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Grace Taiwo",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-06-20",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Water damage",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ring Road, Ibadan",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 17100.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "plumber's report",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-020",
+   "received": "2026-08-20",
+   "from": "pelumi.smith@mail.example",
+   "subject": "Claim notification - Pelumi Smith",
+   "text": "Good morning,\n\nThis is to notify you of an incident: a stone cracked my windscreen on the expressway. Date: 19/08/2026. Location: Herbert Macaulay Way, Yaba.\nMy policy is policy number 1733.\nThe repair estimate is 542.\nLet me know what else you need.\n\nRegards,\nPelumi Smith\n08055044575",
+   "claim_id": "C101733",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001733",
+    "holder": "Pelumi Smith",
+    "product": "Motor comprehensive",
+    "inception": "2026-08-18",
+    "expiry": "2027-08-18",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001733",
+    "claimant_name": "Pelumi Smith",
+    "loss_date": "2026-08-19",
+    "peril": "Windscreen",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 541.64,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 49,
+   "fraud_reasons": [
+    "Loss 1 days after the policy started"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001733",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Pelumi Smith",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-08-19",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 542.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-021",
+   "received": "2026-06-02",
+   "from": "jide.mohammed@mail.example",
+   "subject": "Claim notification - Jide Mohammed",
+   "text": "Hello,\n\nPlease note that my windscreen was shattered by falling debris on 2026-05-28. It happened at Herbert Macaulay Way, Yaba.\nI am insured with you under P000534.\nThe repair estimate is N283.75.\nAttached: photo of the windscreen.\nKindly treat as urgent.\n\nYours faithfully,\nJide Mohammed\n08097040604",
+   "claim_id": "C100534",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000534",
+    "holder": "Jide Mohammed",
+    "product": "Motor comprehensive",
+    "inception": "2026-03-23",
+    "expiry": "2027-03-23",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000534",
+    "claimant_name": "Jide Mohammed",
+    "loss_date": "2026-05-28",
+    "peril": "Windscreen",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 283.75,
+    "police_report": false,
+    "documents": [
+     "photo of the windscreen"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000534",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Jide Mohammed",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-05-28",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 283.75,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photo of the windscreen"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-022",
+   "received": "2025-01-07",
+   "from": "ben.garba@mail.example",
+   "subject": "Claim notification - Ben Garba",
+   "text": "Hi Prime team,\n\nPlease note that my windscreen was shattered by falling debris on 2025-01-04. It happened at Allen Avenue, Ikeja.\nRef: P001292\nThe loss comes to about 400.\nAttached: photo of the windscreen.\nPlease advise on next steps.\n\nRegards,\nBen Garba\n08088565331",
+   "claim_id": "C101292",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001292",
+    "holder": "Ben Garba",
+    "product": "Motor third party, fire and theft",
+    "inception": "2024-03-27",
+    "expiry": "2024-12-19",
+    "perils": [
+     "Theft",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001292",
+    "claimant_name": "Ben Garba",
+    "loss_date": "2025-01-04",
+    "peril": "Windscreen",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": 384.26,
+    "police_report": false,
+    "documents": [
+     "photo of the windscreen"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001292",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Ben Garba",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-01-04",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 400.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photo of the windscreen"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-023",
+   "received": "2026-09-05",
+   "from": "femi.johnson@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nPlease note that another car hit the back of my car at a junction last Monday. It happened at Ring Road, Ibadan.\nMy policy is P001555.\nI am still waiting for a quote for the repairs.\nAttached: photos of the damage, repair estimate.\nThank you.\n\nThanks,\nFemi Johnson\n08095879931",
+   "claim_id": "C101555",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001555",
+    "holder": "Femi Johnson",
+    "product": "Motor comprehensive",
+    "inception": "2022-12-15",
+    "expiry": "2026-12-14",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001555",
+    "claimant_name": "Femi Johnson",
+    "loss_date": "2026-08-31",
+    "peril": "Collision",
+    "location": "Ring Road, Ibadan",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": [
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001555",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Femi Johnson",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ring Road, Ibadan",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-024",
+   "received": "2026-04-03",
+   "from": "grace.danjuma@mail.example",
+   "subject": "Incident report",
+   "text": "Hello,\n\nThis is to notify you of an incident: thieves broke in and took electronics and jewellery. Date: last Friday. Location: Ademola Adetokunbo Crescent, Abuja.\nMy policy is policy number 1848.\nI am still waiting for a quote for the repairs.\nI reported it to the police and have a report, reference IBD/2281/26.\nAttached: list of stolen items, proof of ownership, police report.\nLet me know what else you need.\n\nYours faithfully,\nGrace Danjuma\n08061397205",
+   "claim_id": "C101848",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P001848",
+    "holder": "Grace Danjuma",
+    "product": "Home buildings and contents",
+    "inception": "2024-11-07",
+    "expiry": "2026-11-07",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P001848",
+    "claimant_name": "Grace Danjuma",
+    "loss_date": "2026-04-03",
+    "peril": "Burglary",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": null,
+    "police_report": true,
+    "documents": [
+     "list of stolen items",
+     "police report",
+     "proof of ownership"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001848",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Grace Danjuma",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Theft",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "list of stolen items",
+      "police report",
+      "proof of ownership"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-025",
+   "received": "2026-09-02",
+   "from": "john.usman@mail.example",
+   "subject": "Collision claim",
+   "text": "Good morning,\n\nThis is to notify you of an incident: I hit a pole while reversing. Date: 28/08/2026. Location: Ademola Adetokunbo Crescent, Abuja.\nRef: policy number 1508\nThe repair estimate is 534.\nAttached: photos of the damage, other driver's details, repair estimate.\nLet me know what else you need.\n\nRegards,\nJohn Usman\n08062984416",
+   "claim_id": "C101508",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001508",
+    "holder": "John Usman",
+    "product": "Motor comprehensive",
+    "inception": "2026-07-29",
+    "expiry": "2027-07-29",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001508",
+    "claimant_name": "John Usman",
+    "loss_date": "2026-08-28",
+    "peril": "Collision",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": 534.33,
+    "police_report": false,
+    "documents": [
+     "other driver's details",
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 49,
+   "fraud_reasons": [
+    "Loss 30 days after the policy started"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001508",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "John Usman",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-08-28",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 534.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details",
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-026",
+   "received": "2026-08-03",
+   "from": "tunde.mohammed@mail.example",
+   "subject": "Collision claim",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: another car hit the back of my car at a junction. Date: 28 July 2026. Location: Ademola Adetokunbo Crescent, Abuja.\nI don't have my policy number with me but the policy is in my name.\nThe repair estimate is N660.74.\nPlease advise on next steps.\n\nThanks,\nTunde Mohammed\n08030219392",
+   "claim_id": "C101076",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001076",
+    "holder": "Tunde Mohammed",
+    "product": "Motor comprehensive",
+    "inception": "2026-07-10",
+    "expiry": "2027-07-10",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001076",
+    "claimant_name": "Tunde Mohammed",
+    "loss_date": "2026-07-28",
+    "peril": "Collision",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": 660.74,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 49,
+   "fraud_reasons": [
+    "Loss 18 days after the policy started"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Tunde Mohammed",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-07-28",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 660.74,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-027",
+   "received": "2025-07-29",
+   "from": "lola.johnson@mail.example",
+   "subject": "New claim",
+   "text": "Hello,\n\nThis is to notify you of an incident: a stone cracked my windscreen on the expressway. Date: last Wednesday. Location: Allen Avenue, Ikeja.\nMy policy is P000739.\nI am still waiting for a quote for the repairs.\nPlease advise on next steps.\n\nThanks,\nLola Johnson\n08067911669",
+   "claim_id": "C100739",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000739",
+    "holder": "Lola Johnson",
+    "product": "Motor third party, fire and theft",
+    "inception": "2023-12-12",
+    "expiry": "2025-12-11",
+    "perils": [
+     "Theft",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000739",
+    "claimant_name": "Lola Johnson",
+    "loss_date": "2025-07-23",
+    "peril": "Windscreen",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000739",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Lola Johnson",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-028",
+   "received": "2025-11-22",
+   "from": "kemi.taiwo@mail.example",
+   "subject": "New claim",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: another car hit the back of my car at a junction. Date: 22 November 2025. Location: Herbert Macaulay Way, Yaba.\nMy policy is policy number 1618.\nThe loss comes to about 1,200.\nAttached: other driver's details, repair estimate, photos of the damage.\nLet me know what else you need.\n\nRegards,\nKemi Taiwo\n08015985907",
+   "claim_id": "C101618",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001618",
+    "holder": "Kemi Taiwo",
+    "product": "Motor comprehensive",
+    "inception": "2024-03-03",
+    "expiry": "2026-03-03",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001618",
+    "claimant_name": "Kemi Taiwo",
+    "loss_date": "2025-11-22",
+    "peril": "Collision",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 1170.24,
+    "police_report": false,
+    "documents": [
+     "other driver's details",
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 16,
+   "fraud_reasons": [
+    "3 prior claims in 24 months"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001618",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Kemi Taiwo",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-11-22",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 1200.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details",
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-029",
+   "received": "2025-11-18",
+   "from": "obi.fashola@mail.example",
+   "subject": "New claim",
+   "text": "Hi Prime team,\n\nPlease note that a bus sideswiped my car in traffic on 17/11/2025. It happened at Broad Street, Lagos Island.\nI am insured with you under P001184.\nI am still waiting for a quote for the repairs.\nAttached: other driver's details.\nKindly treat as urgent.\n\nThanks,\nObi Fashola\n08030452915",
+   "claim_id": "C101184",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001184",
+    "holder": "Obi Fashola",
+    "product": "Motor comprehensive",
+    "inception": "2025-11-14",
+    "expiry": "2026-11-14",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001184",
+    "claimant_name": "Obi Fashola",
+    "loss_date": "2025-11-17",
+    "peril": "Collision",
+    "location": "Broad Street, Lagos Island",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": [
+     "other driver's details"
+    ]
+   },
+   "fraud_score": 57,
+   "fraud_reasons": [
+    "Loss 3 days after the policy started",
+    "3 prior claims in 24 months"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001184",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Obi Fashola",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-11-17",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Broad Street, Lagos Island",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-030",
+   "received": "2026-09-08",
+   "from": "ife.danjuma@mail.example",
+   "subject": "Claim notification - Ife Danjuma",
+   "text": "Dear Sir/Madam,\n\nThis is to notify you of an incident: my windscreen was shattered by falling debris. Date: 05/09/2026. Location: Herbert Macaulay Way, Yaba.\nI don't have my policy number with me but the policy is in my name.\nThe repair estimate is N315.35.\nPlease advise on next steps.\n\nThanks,\nIfe Danjuma\n08023837215",
+   "claim_id": "C100237",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000237",
+    "holder": "Ife Danjuma",
+    "product": "Motor comprehensive",
+    "inception": "2026-05-09",
+    "expiry": "2026-08-19",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000237",
+    "claimant_name": "Ife Danjuma",
+    "loss_date": "2026-09-05",
+    "peril": "Windscreen",
+    "location": "Herbert Macaulay Way, Yaba",
+    "amount_claimed": 315.35,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 57,
+   "fraud_reasons": [
+    "Invoice number INV-50589 used on 3 claims",
+    "3 prior claims in 24 months"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Ife Danjuma",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-09-05",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Herbert Macaulay Way, Yaba",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 315.35,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-031",
+   "received": "2026-09-22",
+   "from": "dami.kalu@mail.example",
+   "subject": "New claim",
+   "text": "Dear Sir/Madam,\n\nPlease note that thieves broke in and took electronics and jewellery on 16 September 2026. It happened at Broad Street, Lagos Island.\nI am insured with you under policy number 1302.\nThe loss comes to 2,864.\nI reported it to the police and have a report, reference ABJ/1557/26.\nAttached: proof of ownership, police report, list of stolen items.\nPlease advise on next steps.\n\nYours faithfully,\nDami Kalu\n08096014182",
+   "claim_id": "C101302",
+   "line": "Property",
+   "policy": {
+    "policy_id": "P001302",
+    "holder": "Dami Kalu",
+    "product": "Home buildings and contents",
+    "inception": "2026-08-17",
+    "expiry": "2027-08-17",
+    "perils": [
+     "Water damage",
+     "Fire",
+     "Burglary",
+     "Storm"
+    ],
+    "limit": 60000,
+    "excess": 500
+   },
+   "truth": {
+    "policy_number": "P001302",
+    "claimant_name": "Dami Kalu",
+    "loss_date": "2026-09-16",
+    "peril": "Burglary",
+    "location": "Broad Street, Lagos Island",
+    "amount_claimed": 2864.16,
+    "police_report": true,
+    "documents": [
+     "list of stolen items",
+     "police report",
+     "proof of ownership"
+    ]
+   },
+   "fraud_score": 61,
+   "fraud_reasons": [
+    "Loss 30 days after the policy started",
+    "Burglary claim with no police report"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001302",
+     "confidence": 0.85
+    },
+    "claimant_name": {
+     "value": "Dami Kalu",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-09-16",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Theft",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Broad Street, Lagos Island",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 2864.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "list of stolen items",
+      "police report",
+      "proof of ownership"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-032",
+   "received": "2026-04-10",
+   "from": "bola.smith@mail.example",
+   "subject": "Claim notification - Bola Smith",
+   "text": "Hi Prime team,\n\nPlease note that my windscreen was shattered by falling debris on 10/04/2026. It happened at Ademola Adetokunbo Crescent, Abuja.\nI don't have my policy number with me but the policy is in my name.\nI am still waiting for a quote for the repairs.\nThank you.\n\nRegards,\nBola Smith\n08066978103",
+   "claim_id": "C101983",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001983",
+    "holder": "Bola Smith",
+    "product": "Motor comprehensive",
+    "inception": "2025-06-19",
+    "expiry": "2026-06-19",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001983",
+    "claimant_name": "Bola Smith",
+    "loss_date": "2026-04-10",
+    "peril": "Windscreen",
+    "location": "Ademola Adetokunbo Crescent, Abuja",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 71,
+   "fraud_reasons": [
+    "Payee bank account changed 2 days before payment",
+    "Shares a bank account with 7 other claimants"
+   ],
+   "planted_fraud": true,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Bola Smith",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-04-10",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ademola Adetokunbo Crescent, Abuja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-033",
+   "received": "2025-08-17",
+   "from": "sade.garba@mail.example",
+   "subject": "Windscreen claim",
+   "text": "Hi Prime team,\n\nPlease note that my windscreen was shattered by falling debris on 13 August 2025. It happened at Ring Road, Ibadan.\nRef: P001414\nThe loss comes to N344.95.\nKindly treat as urgent.\n\nThanks,\nSade Garba\n08028681371",
+   "claim_id": "C101414",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001414",
+    "holder": "Sade Garba",
+    "product": "Motor comprehensive",
+    "inception": "2024-04-08",
+    "expiry": "2026-04-08",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001414",
+    "claimant_name": "Sade Garba",
+    "loss_date": "2025-08-13",
+    "peril": "Windscreen",
+    "location": "Ring Road, Ibadan",
+    "amount_claimed": 344.95,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001414",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Sade Garba",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-08-13",
+     "confidence": 0.95
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Ring Road, Ibadan",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 344.95,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-034",
+   "received": "2026-08-27",
+   "from": "sade.eze@mail.example",
+   "subject": "Claim notification - Sade Eze",
+   "text": "Hello,\n\nI want to report a claim. On 2026-08-26 my windscreen was shattered by falling debris at Broad Street, Lagos Island.\nI don't have my policy number with me but the policy is in my name.\nI am still waiting for a quote for the repairs.\nPlease advise on next steps.\n\nYours faithfully,\nSade Eze\n08085682895",
+   "claim_id": "C100275",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000275",
+    "holder": "Sade Eze",
+    "product": "Motor comprehensive",
+    "inception": "2026-08-12",
+    "expiry": "2027-08-12",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000275",
+    "claimant_name": "Sade Eze",
+    "loss_date": "2026-08-26",
+    "peril": "Windscreen",
+    "location": "Broad Street, Lagos Island",
+    "amount_claimed": null,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 57,
+   "fraud_reasons": [
+    "Loss 14 days after the policy started",
+    "3 prior claims in 24 months"
+   ],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Sade Eze",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-08-26",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Broad Street, Lagos Island",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-035",
+   "received": "2026-05-12",
+   "from": "carla.usman@mail.example",
+   "subject": "Incident report",
+   "text": "Dear Sir/Madam,\n\nI want to report a claim. Last Saturday a stone cracked my windscreen on the expressway at Aba Road, Port Harcourt.\nI am insured with you under P001646.\nThe repair estimate is about 300.\nLet me know what else you need.\n\nThanks,\nCarla Usman\n08056264148",
+   "claim_id": "C101646",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001646",
+    "holder": "Carla Usman",
+    "product": "Motor comprehensive",
+    "inception": "2023-03-15",
+    "expiry": "2027-03-14",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001646",
+    "claimant_name": "Carla Usman",
+    "loss_date": "2026-05-09",
+    "peril": "Windscreen",
+    "location": "Aba Road, Port Harcourt",
+    "amount_claimed": 343.92,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001646",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Carla Usman",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Aba Road, Port Harcourt",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 300.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-036",
+   "received": "2026-06-07",
+   "from": "chidi.okafor@mail.example",
+   "subject": "New claim",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: a bus sideswiped my car in traffic. Date: last Saturday. Location: Ahmadu Bello Way, Kaduna.\nMy policy is P000855.\nThe repair estimate is 5,800.\nAttached: photos of the damage, repair estimate, other driver's details.\nLet me know what else you need.\n\nYours faithfully,\nChidi Okafor\n08002469519",
+   "claim_id": "C100855",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000855",
+    "holder": "Chidi Okafor",
+    "product": "Motor comprehensive",
+    "inception": "2026-02-23",
+    "expiry": "2027-02-23",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000855",
+    "claimant_name": "Chidi Okafor",
+    "loss_date": "2026-06-06",
+    "peril": "Collision",
+    "location": "Ahmadu Bello Way, Kaduna",
+    "amount_claimed": 5800.46,
+    "police_report": false,
+    "documents": [
+     "other driver's details",
+     "photos of the damage",
+     "repair estimate"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P000855",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Chidi Okafor",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Collision",
+     "confidence": 0.9
+    },
+    "location": {
+     "value": "Ahmadu Bello Way, Kaduna",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 5800.0,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "other driver's details",
+      "photos of the damage",
+      "repair estimate"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-037",
+   "received": "2025-09-08",
+   "from": "anna.mohammed@mail.example",
+   "subject": "Incident report",
+   "text": "Hi Prime team,\n\nPlease note that a motorcyclist was injured when he collided with my car on 2025-09-08. It happened at Okota Road, Isolo.\nRef: P001596\nI am still waiting for a quote for the repairs.\nI reported it to the police and have a report, reference IBD/1330/26.\nAttached: medical report, other party's details, police report.\nKindly treat as urgent.\n\nThanks,\nAnna Mohammed\n08038684187",
+   "claim_id": "C101596",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001596",
+    "holder": "Anna Mohammed",
+    "product": "Motor comprehensive",
+    "inception": "2023-03-11",
+    "expiry": "2026-03-10",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001596",
+    "claimant_name": "Anna Mohammed",
+    "loss_date": "2025-09-08",
+    "peril": "Third-party injury",
+    "location": "Okota Road, Isolo",
+    "amount_claimed": null,
+    "police_report": true,
+    "documents": [
+     "medical report",
+     "other party's details",
+     "police report"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": "P001596",
+     "confidence": 0.98
+    },
+    "claimant_name": {
+     "value": "Anna Mohammed",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2025-09-08",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Third-party injury",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Okota Road, Isolo",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "police_report": {
+     "value": true,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "medical report",
+      "other party's details",
+      "police report"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-038",
+   "received": "2025-06-14",
+   "from": "lola.johnson@mail.example",
+   "subject": "Claim notification - Lola Johnson",
+   "text": "Hello,\n\nThis is to notify you of an incident: a stone cracked my windscreen on the expressway. Date: last Saturday. Location: Aba Road, Port Harcourt.\nI don't have my policy number with me but the policy is in my name.\nThe loss comes to N262.23.\nThank you.\n\nYours faithfully,\nLola Johnson\n08068303642",
+   "claim_id": "C101973",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001973",
+    "holder": "Lola Johnson",
+    "product": "Motor third party, fire and theft",
+    "inception": "2025-02-07",
+    "expiry": "2026-02-07",
+    "perils": [
+     "Theft",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001973",
+    "claimant_name": "Lola Johnson",
+    "loss_date": "2025-06-14",
+    "peril": "Windscreen",
+    "location": "Aba Road, Port Harcourt",
+    "amount_claimed": 262.23,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 71,
+   "fraud_reasons": [
+    "Payee bank account changed 1 days before payment",
+    "Shares a bank account with 7 other claimants"
+   ],
+   "planted_fraud": true,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Lola Johnson",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Aba Road, Port Harcourt",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 262.23,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-039",
+   "received": "2026-04-01",
+   "from": "funmi.johnson@mail.example",
+   "subject": "Incident report",
+   "text": "Hi Prime team,\n\nThis is to notify you of an incident: a stone cracked my windscreen on the expressway. Date: 2026-03-29. Location: Allen Avenue, Ikeja.\nI don't have my policy number with me but the policy is in my name.\nI am claiming N563.46.\nAttached: photo of the windscreen.\nThank you.\n\nThanks,\nFunmi Johnson\n08036584109",
+   "claim_id": "C100135",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P000135",
+    "holder": "Funmi Johnson",
+    "product": "Motor comprehensive",
+    "inception": "2023-05-10",
+    "expiry": "2026-05-09",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P000135",
+    "claimant_name": "Funmi Johnson",
+    "loss_date": "2026-03-29",
+    "peril": "Windscreen",
+    "location": "Allen Avenue, Ikeja",
+    "amount_claimed": 563.46,
+    "police_report": false,
+    "documents": [
+     "photo of the windscreen"
+    ]
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Funmi Johnson",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-03-29",
+     "confidence": 0.97
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Allen Avenue, Ikeja",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 563.46,
+     "confidence": 0.95
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [
+      "photo of the windscreen"
+     ],
+     "confidence": 0.85
+    }
+   }
+  },
+  {
+   "msg_id": "FNOL-040",
+   "received": "2026-05-04",
+   "from": "sade.nwosu@mail.example",
+   "subject": "Claim notification - Sade Nwosu",
+   "text": "Dear Sir/Madam,\n\nI want to report a claim. On 04/05/2026 my windscreen was shattered by falling debris at Aba Road, Port Harcourt.\nI don't have my policy number with me but the policy is in my name.\nI am claiming about 200.\nLet me know what else you need.\n\nRegards,\nSade Nwosu\n08082205469",
+   "claim_id": "C101832",
+   "line": "Motor",
+   "policy": {
+    "policy_id": "P001832",
+    "holder": "Sade Nwosu",
+    "product": "Motor comprehensive",
+    "inception": "2023-02-02",
+    "expiry": "2027-02-01",
+    "perils": [
+     "Collision",
+     "Theft",
+     "Windscreen",
+     "Third-party injury"
+    ],
+    "limit": 25000,
+    "excess": 250
+   },
+   "truth": {
+    "policy_number": "P001832",
+    "claimant_name": "Sade Nwosu",
+    "loss_date": "2026-05-04",
+    "peril": "Windscreen",
+    "location": "Aba Road, Port Harcourt",
+    "amount_claimed": 244.93,
+    "police_report": false,
+    "documents": []
+   },
+   "fraud_score": 0,
+   "fraud_reasons": [],
+   "planted_fraud": false,
+   "rules_extraction": {
+    "policy_number": {
+     "value": null,
+     "confidence": 0.0
+    },
+    "claimant_name": {
+     "value": "Sade Nwosu",
+     "confidence": 0.8
+    },
+    "loss_date": {
+     "value": "2026-05-04",
+     "confidence": 0.9
+    },
+    "peril": {
+     "value": "Windscreen",
+     "confidence": 0.5
+    },
+    "location": {
+     "value": "Aba Road, Port Harcourt",
+     "confidence": 0.8
+    },
+    "amount_claimed": {
+     "value": 200.0,
+     "confidence": 0.6
+    },
+    "police_report": {
+     "value": false,
+     "confidence": 0.9
+    },
+    "documents": {
+     "value": [],
+     "confidence": 0.85
+    }
+   }
+  }
+ ],
+ "reserve": {
+  "Property|Fire": {
+   "p25": 10249,
+   "median": 20832,
+   "p75": 36433
+  },
+  "Motor|Third-party injury": {
+   "p25": 3331,
+   "median": 5964,
+   "p75": 10551
+  },
+  "Motor|Windscreen": {
+   "p25": 296,
+   "median": 346,
+   "p75": 432
+  },
+  "Property|Storm": {
+   "p25": 4219,
+   "median": 6045,
+   "p75": 9284
+  },
+  "Property|Water damage": {
+   "p25": 2482,
+   "median": 3953,
+   "p75": 7360
+  },
+  "Property|Burglary": {
+   "p25": 2790,
+   "median": 4293,
+   "p75": 6702
+  },
+  "Motor|Theft": {
+   "p25": 6440,
+   "median": 9357,
+   "p75": 13799
+  },
+  "Motor|Collision": {
+   "p25": 1587,
+   "median": 2508,
+   "p75": 3788
+  }
+ },
+ "required_docs": {
+  "Collision": [
+   "photos of the damage",
+   "repair estimate",
+   "other driver's details"
+  ],
+  "Theft": [
+   "police report",
+   "both sets of keys"
+  ],
+  "Windscreen": [
+   "photo of the windscreen"
+  ],
+  "Third-party injury": [
+   "police report",
+   "other party's details",
+   "medical report"
+  ],
+  "Water damage": [
+   "photos of the damage",
+   "plumber's report",
+   "repair estimate"
+  ],
+  "Fire": [
+   "fire service report",
+   "photos of the damage",
+   "list of damaged items"
+  ],
+  "Burglary": [
+   "police report",
+   "list of stolen items",
+   "proof of ownership"
+  ],
+  "Storm": [
+   "photos of the damage",
+   "repair estimate"
+  ]
+ },
+ "stp": {
+  "max_amount": 1500,
+  "max_fraud_score": 30,
+  "min_confidence": 0.85
+ }
+}

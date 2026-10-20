@@ -1,0 +1,9 @@
+node_modules/
+.vercel/
+.env
+.env*.local
+__pycache__/
+# intermediate engine output; the site uses public/data
+engine/*.json
+engine/phase2_intake/*.json
+engine/phase3_reconciliation/*.json

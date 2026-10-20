@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime Insurance AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/desk.css">
+
+</head>
+<body>
+<header class="appbar"><div class="appbar-in"><a class="brand" href="index.html">Prime Insurance AI</a><nav aria-label="Desks"><a href="fraud.html">Fraud desk</a><a href="intake.html">Claims intake</a><a href="reconciliation.html">Reconciliation</a></nav><span id="app-status" class="note"></span></div></header>
+<main class="wrap">
+  <header class="top">
+    <h1>Prime Insurance AI <small>claims fraud, claims intake and bank reconciliation</small></h1>
+    <span class="badge">Synthetic data, not real data</span>
+  </header>
+  <p class="lead">Three working desks built from the PRD and SRD. Every claim, email and bank line here is invented, so the numbers show how each engine behaves, not how it will perform on Prime's own data.</p>
+  <section class="home-cards">
+    <article class="card">
+      <span class="phase">Phase 1</span>
+      <h2><a href="fraud.html">Fraud desk</a></h2>
+      <p style="margin:0">Scores every claim with rules, peer-group anomalies and network links, sends the riskiest to investigators, and saves their outcomes as training labels.</p>
+      <p class="note" style="margin:0">On the synthetic back-test it caught 57 of 100 planted fraud cases at 5% referral capacity, against 20 for a red-flag checklist.</p>
+    </article>
+    <article class="card">
+      <span class="phase">Phase 2</span>
+      <h2><a href="intake.html">Claims intake</a></h2>
+      <p style="margin:0">Reads first-notice-of-loss emails, checks cover, lists missing documents, routes each claim, and settles simple ones only when the phase 1 fraud score allows.</p>
+      <p class="note" style="margin:0">Reading with Claude needs an Anthropic API key on the server. Without one, the rules reading is used.</p>
+    </article>
+    <article class="card">
+      <span class="phase">Phase 3</span>
+      <h2><a href="reconciliation.html">Reconciliation</a></h2>
+      <p style="margin:0">Matches bank lines to premiums and claim payments, clears confident matches, queues the rest with suggestions, and sends payment problems to the fraud team.</p>
+      <p class="note" style="margin:0">On a synthetic month it cleared 87% of 1,574 bank lines automatically, with 0 wrong automatic matches.</p>
+    </article>
+  </section>
+</main>
+<script src="assets/claude-shim.js"></script>
+<script src="assets/boot.js"></script>
+</body>
+</html>

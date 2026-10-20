@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime Reconciliation Workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/desk.css">
+<style>
+
+/* Reconciliation additions: the queue holds bank lines, the case file holds the proposed match. */
+.amt-in { color: var(--good) }
+.amt-out { color: var(--ink) }
+.conf { font-family: var(--display); font-weight: 600; font-size: 15px; text-align: center; border-radius: 6px; padding: 4px 0 }
+.journal { font-size: 13px; padding: 10px 12px; border-radius: 6px; background: var(--accent-soft) }
+.event { font-size: 13px; padding: 10px 12px; border-radius: 6px; background: var(--high-soft); color: var(--high) }
+.age { width: 100%; border-collapse: collapse; font-size: 13px }
+.age th, .age td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--soft) }
+.age td.r, .age th.r { text-align: right }
+.hbar { grid-template-columns: minmax(0, 150px) minmax(0, 1fr) 92px }
+</style>
+</head>
+<body>
+<header class="appbar"><div class="appbar-in"><a class="brand" href="index.html">Prime Insurance AI</a><nav aria-label="Desks"><a href="fraud.html">Fraud desk</a><a href="intake.html">Claims intake</a><a href="reconciliation.html" aria-current="page">Reconciliation</a></nav><span id="app-status" class="note"></span></div></header>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Reconciliation Workbench <small>Prime Insurance · bank reconciliation, phase 3 prototype · September 2026</small></h1>
+    <span class="badge">Synthetic bank data, not real data</span>
+  </header>
+
+  <section class="strip" aria-label="Summary">
+    <div><b class="num" id="s-lines">–</b><span>bank lines this month across 2 accounts</span></div>
+    <div><b class="num" id="s-auto">–</b><span id="s-auto-l">cleared automatically</span></div>
+    <div><b class="num" id="s-exc">–</b><span id="s-exc-l">exceptions for an analyst</span></div>
+    <div><b class="num" id="s-ev">–</b><span>payment issues sent to the fraud team</span></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-q" aria-selected="true" aria-controls="view-q">Exceptions</button>
+    <button role="tab" id="tab-bt" aria-selected="false" aria-controls="view-bt">Back-test and ageing</button>
+  </nav>
+
+  <section id="view-q" role="tabpanel" aria-labelledby="tab-q" class="desk">
+    <div class="queue">
+      <div class="qhead">
+        <input type="search" id="q" placeholder="Search payer, reference, amount" aria-label="Search bank lines">
+        <div class="filters" role="group" aria-label="Filter lines">
+          <button class="chip" data-f="open" aria-pressed="true">To review</button>
+          <button class="chip" data-f="events" aria-pressed="false">Fraud events</button>
+          <button class="chip" data-f="done" aria-pressed="false">Decided</button>
+          <button class="chip" data-f="auto" aria-pressed="false">Auto-cleared</button>
+        </div>
+      </div>
+      <div class="list" id="list" role="list"></div>
+    </div>
+    <article class="case" id="case" aria-live="polite"></article>
+  </section>
+
+  <section id="view-bt" role="tabpanel" aria-labelledby="tab-bt" class="bt" hidden>
+    <div class="card">
+      <h2>Auto-clear threshold</h2>
+      <div class="cap">
+        <label for="thr">Confidence needed before a match clears with no analyst</label>
+        <output id="thr-out" for="thr">0.90</output>
+      </div>
+      <input type="range" id="thr" min="50" max="100" step="1" value="90">
+      <p class="note" id="thr-note"></p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>At this threshold</h3>
+        <div class="vs">
+          <div><b class="num" id="bt-auto">–</b><span class="muted">of lines cleared automatically (target 90%)</span></div>
+          <div><b class="num" id="bt-wrong">–</b><span class="muted">wrong automatic matches (target under 0.1%)</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Cleared automatically, by kind of payment</h3>
+        <div class="hbars" id="bt-kinds"></div>
+      </div>
+      <div class="card">
+        <h3>Premiums still unpaid at month end</h3>
+        <div class="tablewrap"><table class="age"><thead><tr><th>Overdue</th><th class="r">Policies</th><th class="r">Value</th></tr></thead><tbody id="ageing"></tbody></table></div>
+        <p class="note">These go to collections. In the real system this is the unreconciled ageing view in the month-end pack (RC-09).</p>
+      </div>
+    </div>
+    <p class="note">Each bank line in this synthetic month carries its true match, so wrong automatic matches can be counted. On real data they can only be estimated by sampling cleared lines each day.</p>
+  </section>
+</div>
+
+
+<script src="assets/claude-shim.js"></script>
+<script src="assets/boot.js" data-data="data/recon.json" data-app="assets/reconciliation.js"></script>
+</body>
+</html>
